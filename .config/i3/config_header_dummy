@@ -17,7 +17,6 @@ set $mod Mod4
 set $term urxvt
 set $browser1 firefox
 set $browser2 qutebrowser
-set $file1 $term -e ranger
 set $file2 nemo
 set $S1 eDP-1
 set $S2 HDMI-1

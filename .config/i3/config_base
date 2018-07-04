@@ -32,7 +32,7 @@ bindsym $mod+t			split toggle
 bindsym $mod+w		exec --no-startup-id $browser1
 bindsym $mod+Shift+w  exec --no-startup-id $browser2
 
-bindsym $mod+r 			exec $file1
+bindsym $mod+r 			exec $term -e ranger
 bindsym $mod+Shift+r 			exec $file2
 
 bindsym $mod+Shift+t		gaps inner current set 15; gaps outer current set 0
