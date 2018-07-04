@@ -1,0 +1,23 @@
+# vim: filetype=i3config
+
+# This will be added to begiding of your config file
+# Copy this file as `config_header` and add your modifications to it
+
+
+## Header
+for_window [class="^.*"] border pixel 0
+
+gaps inner 15
+gaps outer 0
+
+font pango:monospace 8
+
+## Vars
+set $mod Mod4
+set $term urxvt
+set $browser1 firefox
+set $browser2 qutebrowser
+set $file1 $term -e ranger
+set $file2 nemo
+set $S1 eDP-1
+set $S2 HDMI-1

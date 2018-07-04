@@ -1,28 +1,5 @@
 # vim: filetype=i3config
 
-# This will be added to begiding of your config file
-# Copy this file as `config_header` and add your modifications to it
-
-
-## Header
-for_window [class="^.*"] border pixel 0
-
-gaps inner 15
-gaps outer 0
-
-font pango:monospace 8
-
-## Vars
-set $mod Mod4
-set $term urxvt
-set $browser1 firefox
-set $browser2 qutebrowser
-set $file1 $term -e ranger
-set $file2 nemo
-set $S1 eDP-1
-set $S2 HDMI-1
-# vim: filetype=i3config
-
 ## Body
 
 # Startup
@@ -200,28 +177,3 @@ bindsym XF86AudioPrev exec mpc prev
 ## For screenshots and recording
 bindsym Print 			exec --no-startup-id scrot ~/Pictures/Screenshots/%b%d::%H%M%S.png
 bindsym Shift+Print 		exec --no-startup-id scrot -u ~/Pictures/Screenshots/%b%d::%H%M%S.png
-# vim: filetype=i3config
-
-# This will be added to begiding of your config file
-# Copy this file as `config_footer` and add your modifications to it
-# Also you can put your overrides in it.
-
-## Footer
-
-# Extra Startup
-exec --no-startup-id bash ~/.config/i3/lock.sh &
-exec --no-startup-id /usr/lib/kdeconnectd
-exec --no-startup-id indicator-kdeconnect
-exec blueman-applet
-
-# Dropdown
-exec $term -name dropdown
-for_window [instance="dropdown"] floating enable
-for_window [instance="dropdown"] move position 0px 20px
-for_window [instance="dropdown"] resize set 1366px 400px
-for_window [instance="dropdown"] move scratchpad
-bindsym Ctrl+space [instance="dropdown"] scratchpad show
-
-# Modification per WS
-workspace $ws2 gaps inner 0
-workspace $ws4 gaps inner 0
