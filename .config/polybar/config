@@ -50,9 +50,6 @@ modules-right = volume xkeyboard battery temperature filesystem memory cpu date
 
 tray-position = right
 tray-padding = 1
-tray-detached = false
-tray-transparent = false
-tray-background = ${colors.background}
 
 wm-restack = i3
 

@@ -7,7 +7,6 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 "Plugin 'tpope/vim-fugitive'
-Plugin 'git://git.wincent.com/command-t.git'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -19,6 +18,7 @@ Plugin 'honza/vim-snippets'
 
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'mboughaba/i3config.vim'
+Plugin 'junegunn/goyo.vim'
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
@@ -54,7 +54,6 @@ if (has("autocmd") && !has("gui_running"))
   augroup END
 endif
 
-" colorscheme onedark
 autocmd FileType python map <buffer> <F7> :call Flake8()<CR>
 map <C-c> :NERDTreeToggle<CR>
 map <C-h> <C-w>h
@@ -72,3 +71,4 @@ let g:ycm_complete_in_comments = 1 " Completion in comments
 let g:ycm_complete_in_strings = 1 " Completion in string
 "let g:ycm_python_binary_path = 'python'
 "let g:ycm_server_python_interpreter = '/bin/python'
+let g:ycm_key_list_stop_completion = ['<Enter>']
