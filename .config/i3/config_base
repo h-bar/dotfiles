@@ -177,7 +177,7 @@ bindsym $mod+XF86AudioLowerVolume exec --no-startup-id pulsemixer --change-volum
 
 ## Sreen brightness controls
 bindsym XF86MonBrightnessUp exec light -A 5 # increase screen brightness
-bindsym XF86MonBrightnessDown execlight -U 5 # decrease screen brightness
+bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
 
 
 ## Media player controls
