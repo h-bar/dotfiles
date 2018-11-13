@@ -19,6 +19,8 @@ Plugin 'honza/vim-snippets'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'mboughaba/i3config.vim'
 Plugin 'junegunn/goyo.vim'
+Plugin 'ap/vim-css-color'
+Plugin 'https://github.com/davisdude/vim-love-docs/tree/build'
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
