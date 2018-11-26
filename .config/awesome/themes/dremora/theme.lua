@@ -44,7 +44,7 @@ theme.tasklist_plain_task_name                  = true
 theme.tasklist_disable_icon                     = true
 theme.tasklist_align							= "center"
 theme.useless_gap                               = 5
-theme.systray_icon_spacing					    = 3
+theme.systray_icon_spacing					    = 1.5
 theme.titlebar_close_button_focus               = theme.dir .. "/icons/titlebar/close_focus.png"
 theme.titlebar_close_button_normal              = theme.dir .. "/icons/titlebar/close_normal.png"
 theme.titlebar_ontop_button_focus_active        = theme.dir .. "/icons/titlebar/ontop_focus_active.png"
@@ -108,7 +108,7 @@ theme.mpd = lain.widget.mpd({
 -- CPU
 theme.cpu = lain.widget.cpu({
 	settings = function()
-		local cpu_icon = "  <span font=\"".. theme.iconFont .."\"></span> "
+		local cpu_icon = "    <span font=\"".. theme.iconFont .."\"></span> "
 		widget:set_markup(markup.font(theme.font, markup(white, cpu_icon) .. markup(white, cpu_now.usage)))
 	end
 })
@@ -267,12 +267,12 @@ function theme.at_screen_connect(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+            theme.systray,
             first,
 			theme.cpu.widget,
             theme.bat.widget,
             theme.volume.widget,
             mytextclock,
-            theme.systray,
         },
     }
 end
