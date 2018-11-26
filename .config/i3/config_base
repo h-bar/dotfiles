@@ -33,8 +33,8 @@ bindsym $mod+Return 		exec $term
 
 bindsym $mod+Shift+space 	floating toggle
 
-bindsym $mod+Shift+Escape 	exec bash ~/.scripts/prompt "Are you sure you want to leave i3?" "i3-msg exit"
-bindsym $mod+Shift+BackSpace	exec bash ~/.scripts/prompt "Are you sure you want to reboot?" "reboot"
+bindsym $mod+Shift+Escape 	exec bash ~/.scripts/prompt "Are you sure you want to leave i3?" "i3-msg exit" "dmenu"
+bindsym $mod+Shift+BackSpace	exec bash ~/.scripts/prompt "Are you sure you want to reboot?" "reboot" "dmenu"
 
 bindsym $mod+q			kill
 
