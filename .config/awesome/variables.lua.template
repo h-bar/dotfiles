@@ -1,0 +1,23 @@
+terminal = "urxvt"
+browser1 = "firefox"
+browser2 = "qutebrowser"
+editor = os.getenv("EDITOR") or "vim"
+editor_cmd = terminal .. " -e " .. editor
+file1 = terminal .. " -e " .. "ranger"
+file2 = "nemo"
+
+scripts = "~/.scripts/"
+
+screen1 = "eDP-1"
+screen2 = "HDMI-1"
+
+lockscreen = "betterlockscreen -l dimblur"
+
+kb_layout = "tr"
+
+autostart = {
+	"compton -b",
+	"unclutter",
+	"nm-applet",
+	"udiskie --smart-tray"
+}
