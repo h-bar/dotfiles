@@ -21,6 +21,9 @@ For AwesomeWM you have to go to `.config/awesome/` and make a copy of `variables
 * lain
 * Rofi
 
+![Alt text](./awesome1.png?raw=true "Awesome screenshot")
+![Alt text](./awesome2.png?raw=true "Awesome screenshot")
+
 ## for i3
 Thanks to i3 config files doesn't support multiple files, include, variable etc, I had to make this stupid way.
 Basicly go to `.config/i3/` directory, copy both `config_header_dummy` and `config_footer_dummy` as `config_header` and `config_footer`, make your changes to those 2 files and run `config_build.sh` script. After that you need to copy `.config/polybar/` directory to your `.config/` directory too.
@@ -31,3 +34,6 @@ After that, you're good to go.
 * polybar
 * Sazanami Mincho font
 * dunst
+
+![Alt text](./i31.png?raw=true "i3 screenshot")
+![Alt text](./i32.png?raw=true "i3 screenshot")
