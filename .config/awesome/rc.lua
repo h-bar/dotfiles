@@ -223,13 +223,7 @@ awful.rules.rules = {
           "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
         }
       }, properties = { floating = true }},
-	  rule_any = {
-		class = { "Steam", },
-		properties = {
-			screen = 1,
-			tag = 10,
-		},
-	  },
+	  { rule = { class = "Steam" }, properties = { screen = 1, tag = "10", }},
 
     -- Add titlebars to normal clients and dialogs
     { rule_any = {type = { "normal", "dialog" }
