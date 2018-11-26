@@ -21,8 +21,8 @@ For AwesomeWM you have to go to `.config/awesome/` and make a copy of `variables
 * lain
 * Rofi
 
-![Alt text](./awesome1.png?raw=true "Awesome screenshot")
-![Alt text](./awesome2.png?raw=true "Awesome screenshot")
+![Alt text](./screenshots/awesome1.png?raw=true "Awesome screenshot")
+![Alt text](./screenshots/awesome2.png?raw=true "Awesome screenshot")
 
 ## for i3
 Thanks to i3 config files doesn't support multiple files, include, variable etc, I had to make this stupid way.
@@ -35,5 +35,5 @@ After that, you're good to go.
 * Sazanami Mincho font
 * dunst
 
-![Alt text](./i31.png?raw=true "i3 screenshot")
-![Alt text](./i32.png?raw=true "i3 screenshot")
+![Alt text](./screenshots/i31.png?raw=true "i3 screenshot")
+![Alt text](./screenshots/i32.png?raw=true "i3 screenshot")
