@@ -1,19 +1,16 @@
 #!/bin/sh
 
-DIS1=eDP-1
-DIS2=HDMI-1
+DIS1=$1
+DIS2=$2
 
 
-choices="laptop\nlaptopdual\nHDMI\nManual selection"
+choices="primary\ndual\nsecondary\nManual selection"
 
-chosen=$(echo -e "$choices" | dmenu -i)
+chosen=$(echo -e "$choices" | $3 -i)
 
 case "$chosen" in
-	laptopdual) xrandr --output $DIS1 --auto --output $DIS2 --auto --right-of $DIS1 ;;
-	laptop) xrandr --output $DIS1 --auto --output $DIS2 --off ;;
-	HDMI) xrandr --output $DIS2 --auto --output $DIS1 --off ;;
+	dual) xrandr --output $DIS1 --auto --output $DIS2 --auto --right-of $DIS1 ;;
+	primary) xrandr --output $DIS1 --auto --output $DIS2 --off ;;
+	secondary) xrandr --output $DIS2 --auto --output $DIS1 --off ;;
 	"Manual selection") arandr ;;
 esac
-
-# Relaunch polybar if there was a selection.
-[ "$chosen" == "" ] || ~/.config/polybar/launch.sh

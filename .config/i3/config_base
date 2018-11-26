@@ -81,7 +81,7 @@ bindsym $mod+z			gaps outer current plus 5
 bindsym $mod+Shift+z		gaps outer current minus 5
 
 bindsym $mod+x			exec --no-startup-id ~/.config/i3/lock.sh
-bindsym $mod+Shift+x		exec bash ~/.scripts/prompt "Are you sure you want to shutdown?" "shutdown -P 0"
+bindsym $mod+Shift+x		exec bash ~/.scripts/prompt "Are you sure you want to shutdown?" "shutdown -P 0" "dmenu"
 
 bindsym $mod+m 			exec --no-startup-id $term -e ncmpcpp
 
@@ -147,7 +147,7 @@ workspace $ws9 output $S2
 # Function Buttons
 bindsym $mod+F1		reload
 bindsym $mod+F2		restart
-bindsym $mod+F3		exec --no-startup-id bash ~/.scripts/displayselect
+bindsym $mod+F3		exec --no-startup-id bash ~/.scripts/displayselect $S1 $S2 "dmenu"
 bindsym $mod+F9		exec --no-startup-id bash ~/.scripts/dmenumount
 bindsym $mod+F10	exec --no-startup-id bash ~/.scripts/dmenuumount
 
