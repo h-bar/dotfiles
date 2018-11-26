@@ -7,7 +7,7 @@
 ## Footer
 
 # Extra Startup
-exec --no-startup-id bash ~/.config/i3/lock.sh &
+exec --no-startup-id bash ~/.scripts/lock &
 exec --no-startup-id /usr/lib/kdeconnectd
 exec --no-startup-id indicator-kdeconnect
 exec blueman-applet

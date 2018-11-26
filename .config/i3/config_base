@@ -80,7 +80,7 @@ bindsym $mod+Shift+l		move right 30
 bindsym $mod+z			gaps outer current plus 5
 bindsym $mod+Shift+z		gaps outer current minus 5
 
-bindsym $mod+x			exec --no-startup-id ~/.config/i3/lock.sh
+bindsym $mod+x			exec --no-startup-id ~/.scripts/lock
 bindsym $mod+Shift+x		exec bash ~/.scripts/prompt "Are you sure you want to shutdown?" "shutdown -P 0" "dmenu"
 
 bindsym $mod+m 			exec --no-startup-id $term -e ncmpcpp
