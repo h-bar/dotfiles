@@ -148,12 +148,13 @@ theme.bat = lain.widget.bat({
 			bat_color = white
 		end
         bat_p      = bat_now.perc .. "% "
-        widget:set_markup(markup.font(theme.font, markup(icon_color, bat_header) .. markup(bat_color, bat_p)))
+		if is_laptop then
+	        widget:set_markup(markup.font(theme.font, markup(icon_color, bat_header) .. markup(bat_color, bat_p)))
+		end
     end
 })
 
 theme.systray = wibox.widget.systray()
-theme.systray:set_base_size(15)
 
 -- Volume
 theme.volume = lain.widget.pulse {
@@ -270,7 +271,7 @@ function theme.at_screen_connect(s)
             theme.systray,
             first,
 			theme.cpu.widget,
-            theme.bat.widget,
+			theme.bat,
             theme.volume.widget,
             mytextclock,
         },

@@ -97,6 +97,8 @@ globalkeys = gears.table.join(
 		{description = "open main file manager", group = "apps"}),
 	awful.key({ modkey, shiftkey }, "r", function() awful.spawn(file2) end,
 		{description = "open secondary file manager", group = "apps"}),
+	awful.key({ modkey }, "m", function() awful.spawn(music) end,
+		{description = "open ncmpcpp", group = "apps"}),
 
 	-- Awesome actions
 	awful.key({ modkey }, "F2", awesome.restart,
@@ -126,7 +128,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey, shiftkey }, "space", function() awful.layout.inc(-1) end,
         {description = "select previous", group = "layout"}),
 
-    awful.key({ modkey, shiftkey }, "l",
+    awful.key({ modkey, altkey }, "l",
     	function()
         	awful.prompt.run {
             	prompt       = "Run Lua code: ",
@@ -140,7 +142,7 @@ globalkeys = gears.table.join(
 	awful.key({ ctrlkey }, "space", function () quake:toggle() end),
 
     -- Menubar
-    awful.key({ altkey }, "space", function() awful.spawn.with_shell("rofi -show run") end,
+    awful.key({ altkey }, "space", function() awful.spawn.with_shell("rofi -show combi -combi-modi \"drun,run\"") end,
         {description = "show the menubar", group = "launcher"}),
 
 	-- Action Menus
@@ -243,7 +245,7 @@ clientkeys = gears.table.join(
               {description = "move to screen", group = "client"}),
     awful.key({ modkey }, "t", function(c) c.ontop = not c.ontop end,
               {description = "toggle keep on top", group = "client"}),
-    awful.key({ modkey }, "m",
+    awful.key({ modkey, shiftkey }, "m",
         function (c)
             c.maximized = not c.maximized
             c:raise()

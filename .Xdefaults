@@ -20,7 +20,7 @@
 *color4: #0883ff
 *color12: #1e8eff
 !! magenta
-*color5: #8308ff
+*color5: #a753fc
 *color13: #8e1eff
 !! cyan
 *color6: #02d36a
@@ -29,12 +29,13 @@
 *color7: #b6b6b6
 *color15: #c2c2c2
 
-URxvt.intensityStyles:	false
+URxvt.intensityStyles:	true
 URxvt.background:       [70]#000000
 URxvt.depth:		32
-URxvt.font: 		xft:monospace:size=9, xft:Font Awesome 5 Free:style=Regular:size=9, xft:Font Awesome 5 Free:style=Solid:size=9, xft:Icons:size:9
+urxvt*font: 		xft:Hack Nerd Font Mono:size=10, xft:PowerlineSymbols=Regular:pixelsize=10
 URxvt.scrollBar:	false
 URxvt.cursorColor:	white
+Urxvt.skipBuiltinGlyphs: = false
 
 !! Extensions
 URxvt.perl-ext-common:	default,matcher,resize-font,url-select,keyboard-select,font-size
@@ -61,7 +62,7 @@ URxvt.keysym.Control-Right:    \033[1;5C
 URxvt.keysym.Shift-Up:     font-size:increase
 URxvt.keysym.Shift-Down:   font-size:decrease
 URxvt.keysym.C-0:  font-size:reset
-URxvt.font-size.step: 2
+URxvt.font-size.step: 0
 
 rofi.color-enabled:	true
 rofi.color-window:	#000, #000, #000
@@ -70,8 +71,10 @@ rofi.color-active:	#002b37, #008ed4, #003643, #008ed4, #66c6ff
 rofi.color-urgent:	#002b37, #da4281, #003643, #008ed4, #890661
 
 rofi.fake-transparency:	true
-rofi.lines:		3
+rofi.lines:		5
+rofi.terminal:	"urxvt"
+rofi.show-icons:True
+rofi.drun-icon-theme:"Papirus"
 rofi.bw:		0
-rofi.opacity:		"10"
 rofi.hide-scrollbar:	true
 rofi.width:		30
