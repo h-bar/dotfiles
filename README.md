@@ -10,6 +10,8 @@ You have to copy `.scripts/` directory to your home to both i3 and Awesome work.
 * compton
 * xfce4-screenshooter
 * Font Awesome 5 Free
+* Hack Nerd Font Mono - [This](https://aur.archlinux.org/packages/nerd-fonts-complete/) or [this](https://aur.archlinux.org/packages/nerd-fonts-hack/)
+* awesome-terminal-fonts
 * Roboto fonts
 * betterlockscreen or i3lock
 
