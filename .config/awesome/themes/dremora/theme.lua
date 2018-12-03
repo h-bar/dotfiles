@@ -129,25 +129,26 @@ theme.bat = lain.widget.bat({
 	timeout = 10,
     settings = function()
 		icon_color = white
-		if (bat_now.perc == 100) then
+		bat_perc = bat_now.perc
+		if (bat_perc == 100) then
 			bat_icon = ""
-		elseif (bat_now.perc >= 60 and bat_now.perc < 100) then
+		elseif (bat_perc >= 60 and bat_now.perc < 100) then
 			bat_icon = ""
-		elseif (bat_now.perc >= 20 and bat_now.perc < 60) then
+		elseif (bat_perc >= 20 and bat_now.perc < 60) then
 			bat_icon = ""
-		elseif (bat_now.perc > 20) then
+		elseif (bat_perc > 20) then
 			bat_icon = ""
 			icon_color = "#ff1e8e"
 		end
         bat_header = "  <span font=\"".. theme.iconFont .."\">" .. bat_icon .. "</span> "
 		if (bat_now.status == "Charging" or bat_now.status == "Full") then
 			bat_color = "#1e8eff"
-		elseif (bat_now.status == "Discharging" and bat_now.perc <= 15) then
+		elseif (bat_now.status == "Discharging" and bat_perc <= 15) then
 			bat_color = "#ff1e8e"
 		else
 			bat_color = white
 		end
-        bat_p      = bat_now.perc .. "% "
+        bat_p      = bat_perc .. "% "
 		if is_laptop then
 	        widget:set_markup(markup.font(theme.font, markup(icon_color, bat_header) .. markup(bat_color, bat_p)))
 		end
