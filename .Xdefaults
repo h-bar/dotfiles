@@ -30,9 +30,9 @@
 *color15: #c2c2c2
 
 URxvt.intensityStyles:	true
-URxvt.background:       [70]#000000
+URxvt.background:       [85]#000000
 URxvt.depth:		32
-urxvt*font: 		xft:Hack Nerd Font Mono:size=10, xft:PowerlineSymbols=Regular:pixelsize=10
+URxvt.font: 		xft:Hack Nerd Font Mono:size=8.5:style=Regular, xft:PowerlineSymbols=Regular:pixelsize=8.5
 URxvt.scrollBar:	false
 URxvt.cursorColor:	white
 Urxvt.skipBuiltinGlyphs: = false
