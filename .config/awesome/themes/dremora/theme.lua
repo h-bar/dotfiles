@@ -14,7 +14,7 @@ theme.dir                                       = os.getenv("HOME") .. "/.config
 theme.wallpaper                                 = os.getenv("HOME") .. "/.config/wall.png"
 theme.font                                      = "Roboto Medium 9"
 theme.taglist_font                              = "Roboto Bold 9"
-theme.iconFont      							= "Font Awesome 5 Free Regular 9"
+theme.iconFont                                  = "Font Awesome 5 Free Regular 9"
 theme.fg_normal                                 = "#bbb"
 theme.fg_focus                                  = "#DDDCFF"
 theme.bg_normal                                 = "#2F343F"
@@ -46,9 +46,9 @@ theme.layout_magnifier                          = theme.dir .. "/icons/magnifier
 theme.layout_floating                           = theme.dir .. "/icons/floating.png"
 theme.tasklist_plain_task_name                  = true
 theme.tasklist_disable_icon                     = true
-theme.tasklist_align							= "center"
+theme.tasklist_align                            = "center"
 theme.useless_gap                               = 5
-theme.pw_bg										= "#231929"
+theme.pw_bg                                     = "#231929"
 
 
 local white      = theme.fg_focus
