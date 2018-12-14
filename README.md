@@ -21,6 +21,7 @@ For AwesomeWM you have to go to `.config/awesome/` and make a copy of `variables
 ### Dependencies for Awesome
 * awesome
 * lain
+* vicious
 * Rofi
 
 ![Alt text](./screenshots/awesome1.png?raw=true "Awesome screenshot")
