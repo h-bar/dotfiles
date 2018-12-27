@@ -314,6 +314,7 @@ function theme.at_screen_connect(s)
 		awful.tag.add(i.name, {
 			layout = i.lay or awful.layout.layouts[1],
 			gap = i.gap or theme.useless_gap,
+		    gap_single_client  = true,
 			screen = s,
 			selected = i.sel or false,
 			master_width_factor = i.mw or 0.5,

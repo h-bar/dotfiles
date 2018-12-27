@@ -64,17 +64,6 @@ beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv
 
 -- }}}
 
--- {{{ Menu
-local myawesomemenu = {
-    { "hotkeys", function() return false, hotkeys_popup.show_help end },
-    { "manual", terminal .. " -e man awesome" },
-    { "edit config", string.format("%s -e %s %s", terminal, editor, awesome.conffile) },
-    { "restart", awesome.restart },
-    { "quit", function() awesome.quit() end }
-}
---menubar.utils.terminal = terminal -- Set the Menubar terminal for applications that require it
--- }}}
-
 -- {{{ Screen
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", function(s)
@@ -100,11 +89,12 @@ awful.rules.rules = {
       properties = { border_width = beautiful.border_width,
                      border_color = beautiful.border_normal,
                      focus = awful.client.focus.filter,
-                     raise = true,
                      keys = clientkeys,
                      buttons = clientbuttons,
                      screen = awful.screen.preferred,
-                     placement = awful.placement.no_overlap+awful.placement.no_offscreen
+                     placement = awful.placement.no_overlap+awful.placement.no_offscreen,
+					 honor_padding = true,
+					 honor_workarea = true
      }
     },
 
@@ -134,6 +124,11 @@ awful.rules.rules = {
         }
       }, properties = { floating = true }},
 	  { rule = { class = "Steam" }, properties = { screen = 1, tag = "10", }},
+	  {
+		  rule = { class = "Steam" },
+		  except = { name = "Steam" },
+	   	  properties = { ontop = true, }
+	  },
 
     -- Add titlebars to normal clients and dialogs
     { rule_any = {type = { "normal", "dialog" }
@@ -141,6 +136,7 @@ awful.rules.rules = {
     },
 	{ rule_any = {
 		class = {"file_progress",},
+		type = { "dialog" },
 		}, properties = { ontop = true,},
 	}
 
@@ -162,7 +158,7 @@ client.connect_signal("manage", function (c)
       not c.size_hints.user_position
       and not c.size_hints.program_position then
         -- Prevent clients from being unreachable after screen count changes.
-        awful.placement.no_offscreen(c)
+        awful.placement.no_offscreen(c, {honor_padding = true})
     end
 end)
 
