@@ -1,4 +1,3 @@
-
 local gears         = require("gears")
 local awful         = require("awful")
                       require("awful.autofocus")
@@ -88,13 +87,16 @@ awful.rules.rules = {
     { rule = { },
       properties = { border_width = beautiful.border_width,
                      border_color = beautiful.border_normal,
-                     focus = awful.client.focus.filter,
+					 focus = awful.client.focus.filter,
                      keys = clientkeys,
+					 raise = false,
                      buttons = clientbuttons,
                      screen = awful.screen.preferred,
                      placement = awful.placement.no_overlap+awful.placement.no_offscreen,
+					 size_hints_honor = false,
 					 honor_padding = true,
-					 honor_workarea = true
+					 honor_workarea = true,
+					 minimized = false
      }
     },
 
@@ -153,6 +155,8 @@ client.connect_signal("manage", function (c)
     -- Set the windows at the slave,
     -- i.e. put it at the end of others instead of setting it master.
     -- if not awesome.startup then awful.client.setslave(c) end
+
+	if not awesome.startup then awful.client.setslave(c) end
 
     if awesome.startup and
       not c.size_hints.user_position
