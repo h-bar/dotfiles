@@ -171,7 +171,7 @@ vicious.register(
 		local fs_icon = ("<span color=\"%s\" font=\"%s\"></span>"):format(
 			"#fc4f8e", theme.iconFont	
 		)
-		return ("%s <span color=\"%s\">%s%%</span>"):format(
+		return ("%s <span color=\"%s\">%s°C</span>"):format(
 			fs_icon, white, args[1]
 		)
 	end,
