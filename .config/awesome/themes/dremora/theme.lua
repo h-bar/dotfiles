@@ -249,30 +249,30 @@ theme.bat.widget:buttons(awful.util.table.join(
 -- volume
 theme.volumewidget = wibox.widget.textbox()
 vicious.register(theme.volumewidget, vicious.widgets.volume,
-                function(widget, args)
-                    local label = {["♫"] = "O", ["♩"] = "M"}
-					local cur_vol = args[1]
-					local vol_color = white
-					local vol_icon_color = "#ff8e1e"
-					if (cur_vol > 70) then
-						vol_icon = ""
-					elseif (cur_vol > 30) then
-						vol_icon = ""
-					else
-						vol_icon = ""
-					end
-					if label[args[2]] == "M" then
-						vol_color = "#ff1e8e"
-						vol_icon_color = "#ff1e8e"
-						cur_vol = "M"
-					end
-					local vheader = ("<span color=\"%s\" font=\"%s\">%s</span>"):format(
-						vol_icon_color, theme.iconFont, vol_icon
-					)
-                    return ("<span color=\"%s\">%s %s </span>"):format(
-						vol_color, vheader, cur_vol
-					)
-                end, 2, {"Master", "-D", "pulse"})
+	function(widget, args)
+    	local label = {["♫"] = "O", ["♩"] = "M"}
+		local cur_vol = args[1]
+		local vol_color = white
+		local vol_icon_color = "#ff8e1e"
+		if (cur_vol > 70) then
+			vol_icon = ""
+		elseif (cur_vol > 30) then
+			vol_icon = ""
+		else
+			vol_icon = ""
+		end
+		if label[args[2]] == "M" then
+			vol_color = "#ff1e8e"
+			vol_icon_color = "#ff1e8e"
+			cur_vol = "M"
+		end
+		local vheader = ("<span color=\"%s\" font=\"%s\">%s</span>"):format(
+			vol_icon_color, theme.iconFont, vol_icon
+		)
+		return ("<span color=\"%s\">%s %s </span>"):format(
+			vol_color, vheader, cur_vol
+		)
+	end, 2, {"Master", "-D", "pulse"})
 
 theme.volumewidget:buttons(awful.util.table.join(
     awful.button({}, 2, function() -- left click
