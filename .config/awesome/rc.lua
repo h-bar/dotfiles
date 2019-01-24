@@ -179,8 +179,14 @@ function border_adjust(c)
     elseif #awful.screen.focused().clients > 1 then
         c.border_width = beautiful.border_width
         c.border_color = beautiful.border_focus
+	else
+		c.border_width = 0
     end
 end
+
+client.connect_signal("property::maximized", border_adjust)
+client.connect_signal("focus", border_adjust)
+client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
 for _,i in pairs(autostart) do
 	awful.spawn.with_shell("~/.config/awesome/autorun.sh " .. i)
