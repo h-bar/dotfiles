@@ -10,7 +10,7 @@ local markup = lain.util.markup
 local separators = lain.util.separators
 
 local theme = {}
-theme.dir = os.getenv("HOME") .. "/.config/awesome/themes/dremora"
+theme.dir = os.getenv("HOME") .. "/.config/awesome/theme"
 theme.wallpaper = os.getenv("HOME") .. "/.config/wall.png"
 theme.font = "Roboto Medium 9"
 theme.taglist_font = "Roboto Bold 9"
@@ -62,66 +62,66 @@ mytextclock.font = theme.font
 
 -- Calendar
 theme.cal = lain.widget.cal({
-    attach_to = { mytextclock },
-    notification_preset = {
-        font = "Misc Tamsyn 11",
-        fg = white,
-        bg = theme.bg_normal
-    }})
-    mytextclock:disconnect_signal("mouse::enter", theme.cal.hover_on)
+  attach_to = { mytextclock },
+  notification_preset = {
+    font = "Misc Tamsyn 11",
+    fg = white,
+    bg = theme.bg_normal
+  }})
+  mytextclock:disconnect_signal("mouse::enter", theme.cal.hover_on)
 
-    -- MPD
-    theme.mpdwidget = wibox.widget.textbox()
-    vicious.register(
-        theme.mpdwidget,
-        vicious.widgets.mpd,
-        function(widget, args)
-            if args["{state}"] == "Stop" then
-                return ""
-            else
-                return ('<span color="white">%s</span> - %s'):format(
-                args["{Artist}"], args["{Title}"])
-            end
-    end)
+  -- MPD
+  theme.mpdwidget = wibox.widget.textbox()
+  vicious.register(
+    theme.mpdwidget,
+    vicious.widgets.mpd,
+    function(widget, args)
+      if args["{state}"] == "Stop" then
+        return ""
+      else
+        return ('<span color="white">%s</span> - %s'):format(
+        args["{Artist}"], args["{Title}"])
+      end
+  end)
 
-    -- MPD Toggle
-    theme.mpd_toggle = wibox.widget.textbox()
-    vicious.register(
-        theme.mpd_toggle,
-        vicious.widgets.mpd,
-        function(widget, args)
-            local label = {["Play"] = "", ["Pause"] = "", ["Stop"] = "" }
-            return ("<span font=\"".. theme.iconFont .."\">%s</span> "):format(label[args["{state}"]])
-    end)
+  -- MPD Toggle
+  theme.mpd_toggle = wibox.widget.textbox()
+  vicious.register(
+    theme.mpd_toggle,
+    vicious.widgets.mpd,
+    function(widget, args)
+      local label = {["Play"] = "", ["Pause"] = "", ["Stop"] = "" }
+      return ("<span font=\"".. theme.iconFont .."\">%s</span> "):format(label[args["{state}"]])
+  end)
 
-    theme.mpd_toggle:buttons(awful.util.table.join(
-        awful.button({}, 1, function()
-        os.execute("mpc toggle")
-        vicious.force({theme.mpdwidget, theme.mpd_prev, theme.mpd_toggle, theme.mpd_next})
-    end),
-    awful.button({}, 3, function()
-        os.execute("mpc stop")
-        vicious.force({theme.mpdwidget, theme.mpd_prev, theme.mpd_toggle, theme.mpd_next})
-    end)
+  theme.mpd_toggle:buttons(awful.util.table.join(
+    awful.button({}, 1, function()
+    os.execute("mpc toggle")
+    vicious.force({theme.mpdwidget, theme.mpd_prev, theme.mpd_toggle, theme.mpd_next})
+  end),
+  awful.button({}, 3, function()
+    os.execute("mpc stop")
+    vicious.force({theme.mpdwidget, theme.mpd_prev, theme.mpd_toggle, theme.mpd_next})
+  end)
 ))
 
 -- MPD Previous
 theme.mpd_prev = wibox.widget.textbox()
 vicious.register(
-    theme.mpd_prev,
-    vicious.widgets.mpd,
-    function(widget, args)
-        if args["{state}"] == "Stop" then
-            return " "
-        else
-            return (" <span font=\"".. theme.iconFont .."\"></span> ")
-        end
+  theme.mpd_prev,
+  vicious.widgets.mpd,
+  function(widget, args)
+    if args["{state}"] == "Stop" then
+      return " "
+    else
+      return (" <span font=\"".. theme.iconFont .."\"></span> ")
+    end
 end)
 
 theme.mpd_prev:buttons(awful.util.table.join(
-    awful.button({}, 1, function()
-    os.execute("mpc prev")
-    vicious.force({theme.mpdwidget, theme.mpd_prev, theme.mpd_toggle, theme.mpd_next})
+  awful.button({}, 1, function()
+  os.execute("mpc prev")
+  vicious.force({theme.mpdwidget, theme.mpd_prev, theme.mpd_toggle, theme.mpd_next})
 end)
 ))
 
@@ -131,17 +131,17 @@ vicious.register(
 theme.mpd_next,
 vicious.widgets.mpd,
 function(widget, args)
-    if args["{state}"] == "Stop" then
-        return ""
-    else
-        return ("<span font=\"".. theme.iconFont .."\"></span>")
-    end
+  if args["{state}"] == "Stop" then
+    return ""
+  else
+    return ("<span font=\"".. theme.iconFont .."\"></span>")
+  end
 end)
 
 theme.mpd_next:buttons(awful.util.table.join(
-    awful.button({}, 1, function()
-    os.execute("mpc next")
-    vicious.force({theme.mpdwidget, theme.mpd_prev, theme.mpd_toggle, theme.mpd_next})
+  awful.button({}, 1, function()
+  os.execute("mpc next")
+  vicious.force({theme.mpdwidget, theme.mpd_prev, theme.mpd_toggle, theme.mpd_next})
 end)
 ))
 
@@ -152,12 +152,12 @@ vicious.register(
 theme.fs,
 vicious.widgets.fs,
 function(widget, args)
-    local fs_icon = ("<span color=\"%s\" font=\"%s\"></span>"):format(
-        "#b6b6b6", theme.iconFont
-    )
-    return ("%s <span color=\"%s\">%s%%</span>"):format(
-        fs_icon, white, args["{/ used_p}"]
-    )
+  local fs_icon = ("<span color=\"%s\" font=\"%s\"></span>"):format(
+    "#b6b6b6", theme.iconFont
+  )
+  return ("%s <span color=\"%s\">%s%%</span>"):format(
+    fs_icon, white, args["{/ used_p}"]
+  )
 end,
 999
 )
@@ -168,12 +168,12 @@ vicious.register(
 theme.ther,
 vicious.widgets.thermal,
 function(widget, args)
-    local fs_icon = ("<span color=\"%s\" font=\"%s\"></span>"):format(
-        "#fc4f8e", theme.iconFont
-    )
-    return ("%s <span color=\"%s\">%s°C</span>"):format(
-        fs_icon, white, args[1]
-    )
+  local fs_icon = ("<span color=\"%s\" font=\"%s\"></span>"):format(
+    "#fc4f8e", theme.iconFont
+  )
+  return ("%s <span color=\"%s\">%s°C</span>"):format(
+    fs_icon, white, args[1]
+  )
 end,
 19,
 "thermal_zone1"
@@ -185,12 +185,12 @@ vicious.register(
 theme.mem,
 vicious.widgets.mem,
 function(widget, args)
-    local mem_icon = ("<span color=\"%s\" font=\"%s\"></span>"):format(
-        "#a753fc", theme.iconFont
-    )
-    return ("%s <span color=\"%s\">%s%%</span>"):format(
-        mem_icon, white, args[1]
-    )
+  local mem_icon = ("<span color=\"%s\" font=\"%s\"></span>"):format(
+    "#a753fc", theme.iconFont
+  )
+  return ("%s <span color=\"%s\">%s%%</span>"):format(
+    mem_icon, white, args[1]
+  )
 end
 )
 
@@ -210,29 +210,29 @@ settings = function()
 icon_color = "#0883ff"
 bat_perc = bat_now.perc
 if (bat_perc == 100) then
-    bat_icon = ""
+  bat_icon = ""
 elseif (bat_perc >= 60 and bat_now.perc < 100) then
-    bat_icon = ""
+  bat_icon = ""
 elseif (bat_perc >= 20 and bat_now.perc < 60) then
-    bat_icon = ""
+  bat_icon = ""
 elseif (bat_perc > 20) then
-    bat_icon = ""
-    icon_color = "#ff1e8e"
+  bat_icon = ""
+  icon_color = "#ff1e8e"
 end
 bat_header = "<span font=\"".. theme.iconFont .."\">" .. bat_icon .. "</span> "
 if (bat_now.status == "Charging" or bat_now.status == "Full") then
-    bat_color = "#0883ff"
+  bat_color = "#0883ff"
 elseif (bat_now.status == "Discharging" and bat_perc <= 15) then
-    bat_color = "#ff1e8e"
+  bat_color = "#ff1e8e"
 else
-    bat_color = white
+  bat_color = white
 end
 bat_p = bat_perc .. "%"
 if is_laptop then
-    widget:set_markup(
-        markup.font(
-        theme.font, markup(icon_color, bat_header) .. markup(bat_color, bat_p) )
-    )
+  widget:set_markup(
+    markup.font(
+    theme.font, markup(icon_color, bat_header) .. markup(bat_color, bat_p) )
+  )
 end
 end
 })

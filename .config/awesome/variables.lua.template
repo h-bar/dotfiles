@@ -22,48 +22,48 @@ kb_layout = "tr"
 is_laptop = false
 
 autostart = {
-	"compton -b",
-	"unclutter",
-	"nm-applet",
-	"udiskie --smart-tray",
+  "compton -b",
+  "unclutter",
+  "nm-applet",
+  "udiskie --smart-tray",
 }
 
 awful.layout.layouts = {
-    awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
-    awful.layout.suit.floating,
-    awful.layout.suit.fair,
-    awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.magnifier,
-    awful.layout.suit.corner.nw,
-    lain.layout.centerwork,
+  awful.layout.suit.tile,
+  awful.layout.suit.tile.left,
+  awful.layout.suit.tile.bottom,
+  awful.layout.suit.tile.top,
+  awful.layout.suit.floating,
+  awful.layout.suit.fair,
+  awful.layout.suit.spiral.dwindle,
+  awful.layout.suit.magnifier,
+  awful.layout.suit.corner.nw,
+  lain.layout.centerwork,
 }
 
 awful.util.tagnames = {
-	{
-		{name = "1", sel = true},
-		{name = "2"},
-		{name = "3", lay = awful.layout.layouts[3], mw = 0.87},
-		{name = "4"},
-		{name = "5"},
-		{name = "6"},
-		{name = "7"},
-		{name = "8"},
-		{name = "9"},
-		{name = "10", lay = awful.layout.layouts[5]},
-	},
-	{
-		{name = "1", sel = true},
-		{name = "2"},
-		{name = "3"},
-		{name = "4"},
-		{name = "5"},
-		{name = "6"},
-		{name = "7"},
-		{name = "8"},
-		{name = "9"},
-		{name = "10"},
-	}
+  {
+    {name = "1", sel = true},
+    {name = "2"},
+    {name = "3", lay = awful.layout.layouts[3], mw = 0.87},
+    {name = "4"},
+    {name = "5"},
+    {name = "6"},
+    {name = "7"},
+    {name = "8"},
+    {name = "9"},
+    {name = "10", lay = awful.layout.layouts[5]},
+  },
+  {
+    {name = "1", sel = true},
+    {name = "2"},
+    {name = "3"},
+    {name = "4"},
+    {name = "5"},
+    {name = "6"},
+    {name = "7"},
+    {name = "8"},
+    {name = "9"},
+    {name = "10"},
+  }
 }
