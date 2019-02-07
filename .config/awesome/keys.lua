@@ -160,17 +160,17 @@ globalkeys = gears.table.join(
   -- Action Menus
   awful.key({ modkey }, "F3",
     function()
-      awful.spawn.with_shell(scripts .. "displayselect " .. screen1 .. " " .. screen2 .. " \"rofi - dmenu\"")
+      awful.spawn.with_shell(scripts .. "displayselect " .. screen1 .. " " .. screen2 .. " \"rofi -dmenu\"")
     end,
     {description = "show display selection", group = "launcher"}),
   awful.key({ modkey, shiftkey }, "x",
     function()
-      awful.spawn.with_shell(scripts .. "prompt " .. "\"Shutdown?\" " .. "\"shutdown - P 0\" " .. "\"rofi - dmenu\"")
+      awful.spawn.with_shell(scripts .. "prompt " .. "\"Shutdown?\" " .. "\"shutdown -P 0\" " .. "\"rofi -dmenu\"")
     end,
     {description = "show shutdown prompt", group = "launcher"}),
   awful.key({ modkey, shiftkey }, "BackSpace",
     function()
-      awful.spawn.with_shell(scripts .. "prompt " .. "\"Reboot?\" " .. "\"reboot\" " .. "\"rofi - dmenu\"")
+      awful.spawn.with_shell(scripts .. "prompt " .. "\"Reboot?\" " .. "\"reboot\" " .. "\"rofi -dmenu\"")
     end,
     {description = "show shutdown prompt", group = "launcher"}),
   awful.key({ modkey }, "x",
