@@ -174,17 +174,13 @@ end)
 
 -- No border for maximized clients
 function border_adjust(c)
-  if c.maximized or #awful.screen.focused().clients == 1 then -- no borders if only 1 client visible
-    c.border_width = 0
-  elseif #awful.screen.focused().clients > 1 then
-    c.border_width = beautiful.border_width
-    c.border_color = beautiful.border_focus
+  if #awful.screen.focused().clients == 1 then -- make borders black if there is only one border
+    c.border_color = beautiful.border_normal
   else
-    c.border_color = beautiful.bg_normal
+    c.border_color = beautiful.border_focus
   end
 end
 
-client.connect_signal("property::maximized", border_adjust)
 client.connect_signal("focus", border_adjust)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
@@ -193,14 +189,11 @@ for _, i in pairs(autostart) do
 end
 
 quake = lain.util.quake {
-app = terminal,
-horiz = "center",
-height = 0.4,
-width = 1
+  app = terminal,
+  horiz = "center",
+  height = 0.4,
+  width = 1
 }
 
 awful.spawn.with_shell("setxkbmap " .. kb_layout)
 awful.spawn.with_shell("pulsemixer --unmute")
-
-client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)

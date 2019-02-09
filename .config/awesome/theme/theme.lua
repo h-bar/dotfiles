@@ -48,6 +48,7 @@ theme.tasklist_plain_task_name = true
 theme.tasklist_disable_icon = true
 theme.tasklist_align = "center"
 theme.useless_gap = 5
+theme.maximized_hide_border = true
 theme.pw_bg = "#231929"
 
 
