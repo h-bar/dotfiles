@@ -21,14 +21,15 @@ beautiful.init(string.format("%s/.config/awesome/theme/theme.lua", os.getenv("HO
 local keys = {}
 
 globalkeys = gears.table.join(
-  awful.key({ altkey, }, "Left", awful.tag.viewprev,
+  -- Move between tags
+  awful.key({ modkey, }, "j", awful.tag.viewprev,
     {description = "view previous", group = "tag"}),
-  awful.key({ altkey, }, "Right", awful.tag.viewnext,
+  awful.key({ modkey, }, "k", awful.tag.viewnext,
     {description = "view next", group = "tag"}),
   awful.key({ modkey }, "Tab", awful.tag.history.restore,
     {description = "go back", group = "tag"}),
 
-  -- Movement Keys
+  -- Focus clients by direction
   awful.key({ modkey }, "Down",
     function()
       awful.client.focus.global_bydirection("down")
@@ -55,12 +56,12 @@ globalkeys = gears.table.join(
     {description = "focus right", group = "client"}),
 
   -- Focus client by index (cycle through clients)
-  awful.key({ modkey, altkey }, "Left",
+  awful.key({ modkey }, "l",
     function()
       awful.client.focus.byidx( 1)
     end,
     {description = "focus next by index", group = "client"}),
-  awful.key({ modkey, altkey }, "Right",
+  awful.key({ modkey }, "h",
     function()
       awful.client.focus.byidx(-1)
     end,
@@ -76,9 +77,10 @@ globalkeys = gears.table.join(
   awful.key({ modkey, shiftkey }, "Down", function() awful.client.swap.global_bydirection("down") end,
     {description = "swap with direction down", group = "client"}),
 
-  awful.key({ modkey, ctrlkey }, "Left", function() awful.screen.focus_relative( 1) end,
+  -- Move between screens
+  awful.key({ altkey }, "Left", function() awful.screen.focus_relative( 1) end,
     {description = "focus the next screen", group = "screen"}),
-  awful.key({ modkey, ctrlkey }, "Right", function() awful.screen.focus_relative(-1) end,
+  awful.key({ altkey }, "Right", function() awful.screen.focus_relative(-1) end,
     {description = "focus the previous screen", group = "screen"}),
 
   awful.key({ modkey }, "u", awful.client.urgent.jumpto,
@@ -98,30 +100,30 @@ globalkeys = gears.table.join(
     {description = "open main file manager", group = "apps"}),
   awful.key({ modkey, shiftkey }, "r", function() awful.spawn(file2) end,
     {description = "open secondary file manager", group = "apps"}),
-  awful.key({ modkey }, "m", function() awful.spawn(music) end,
+  awful.key({ modkey }, "n", function() awful.spawn(music) end,
     {description = "open ncmpcpp", group = "apps"}),
 
   -- Awesome actions
-  awful.key({ modkey }, "F2", awesome.restart,
+  awful.key({ modkey, shiftkey }, "F2", awesome.restart,
     {description = "reload awesome", group = "awesome"}),
   awful.key({ modkey, shiftkey }, "q", awesome.quit,
     {description = "quit awesome", group = "awesome"}),
   awful.key({ modkey }, "F1", hotkeys_popup.show_help,
     {description = "show help", group = "awesome"}),
 
-  awful.key({ modkey }, "l", function() awful.tag.incmwfact( 0.05) end,
+  awful.key({ modkey, shiftkey }, "l", function() awful.tag.incmwfact( 0.05) end,
     {description = "increase master width factor", group = "layout"}),
-  awful.key({ modkey }, "h", function() awful.tag.incmwfact(-0.05) end,
+  awful.key({ modkey, shiftkey }, "h", function() awful.tag.incmwfact(-0.05) end,
     {description = "decrease master width factor", group = "layout"}),
 
-  awful.key({ modkey, shiftkey }, "h", function() awful.tag.incnmaster( 1, nil, true) end,
+  awful.key({ modkey, shiftkey }, "k", function() awful.tag.incnmaster( 1, nil, true) end,
     {description = "increase the number of master clients", group = "layout"}),
-  awful.key({ modkey, shiftkey }, "l", function() awful.tag.incnmaster(-1, nil, true) end,
+  awful.key({ modkey, shiftkey }, "j", function() awful.tag.incnmaster(-1, nil, true) end,
     {description = "decrease the number of master clients", group = "layout"}),
 
-  awful.key({ modkey, ctrlkey }, "h", function() awful.tag.incncol( 1, nil, true) end,
+  awful.key({ modkey, ctrlkey }, "l", function() awful.tag.incncol( 1, nil, true) end,
     {description = "increase the number of columns", group = "layout"}),
-  awful.key({ modkey, ctrlkey }, "l", function() awful.tag.incncol(-1, nil, true) end,
+  awful.key({ modkey, ctrlkey }, "h", function() awful.tag.incncol(-1, nil, true) end,
     {description = "decrease the number of columns", group = "layout"}),
 
   awful.key({ modkey }, "space", function() awful.layout.inc( 1) end,
@@ -154,7 +156,7 @@ globalkeys = gears.table.join(
     {description = "restore minimized", group = "client"}),
 
   -- Menubar
-  awful.key({ altkey }, "space", function() awful.spawn.with_shell("rofi -show combi -combi-modi \"drun, run\"") end,
+  awful.key({ altkey }, "space", function() awful.spawn.with_shell("rofi -show combi -combi-modi \"drun,run\"") end,
     {description = "show the menubar", group = "launcher"}),
 
   -- Action Menus
@@ -248,17 +250,23 @@ clientkeys = gears.table.join(
       c:raise()
     end,
     {description = "toggle fullscreen", group = "client"}),
+
   awful.key({ modkey }, "q", function(c) c:kill() end,
     {description = "close", group = "client"}),
+
   awful.key({ modkey, ctrlkey }, "space", awful.client.floating.toggle,
     {description = "toggle floating", group = "client"}),
+
   awful.key({ modkey, ctrlkey }, "Return", function(c) c:swap(awful.client.getmaster()) end,
     {description = "move to master", group = "client"}),
+
   awful.key({ modkey }, "o", function(c) c:move_to_screen() end,
     {description = "move to screen", group = "client"}),
+
   awful.key({ modkey }, "t", function(c) c.ontop = not c.ontop end,
     {description = "toggle keep on top", group = "client"}),
-  awful.key({ modkey, shiftkey }, "m",
+
+  awful.key({ modkey }, "m",
     function (c)
       c.maximized = not c.maximized
       c:raise()
@@ -316,9 +324,18 @@ for i = 1, 10 do
   )
 end
 
+-- Mouse Actions
+
 clientbuttons = gears.table.join(
   awful.button({ }, 1, function(c) client.focus = c; c:raise() end),
   awful.button({ modkey }, 1, awful.mouse.client.move),
-awful.button({ modkey }, 3, awful.mouse.client.resize))
+  awful.button({ modkey }, 3, awful.mouse.client.resize))
+
+awful.util.taglist_buttons = gears.table.join(
+  awful.button({ }, 1, function(t) t:view_only() end),
+  awful.button({ }, 3, awful.tag.viewtoggle),
+  awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
+  awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
+)
 
 root.keys(globalkeys)
