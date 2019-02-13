@@ -56,15 +56,9 @@ globalkeys = gears.table.join(
     {description = "focus right", group = "client"}),
 
   -- Focus client by index (cycle through clients)
-  awful.key({ modkey }, "l",
-    function()
-      awful.client.focus.byidx( 1)
-    end,
+  awful.key({ modkey }, "l", function() awful.client.focus.byidx(1) end,
     {description = "focus next by index", group = "client"}),
-  awful.key({ modkey }, "h",
-    function()
-      awful.client.focus.byidx(-1)
-    end,
+  awful.key({ modkey }, "h", function() awful.client.focus.byidx(-1) end,
     {description = "focus previous by index", group = "client"}),
 
   -- Layout manipulation
@@ -116,9 +110,9 @@ globalkeys = gears.table.join(
   awful.key({ modkey, shiftkey }, "h", function() awful.tag.incmwfact(-0.05) end,
     {description = "decrease master width factor", group = "layout"}),
 
-  awful.key({ modkey, shiftkey }, "k", function() awful.tag.incnmaster( 1, nil, true) end,
+  awful.key({ modkey, altkey }, "k", function() awful.tag.incnmaster( 1, nil, true) end,
     {description = "increase the number of master clients", group = "layout"}),
-  awful.key({ modkey, shiftkey }, "j", function() awful.tag.incnmaster(-1, nil, true) end,
+  awful.key({ modkey, altkey }, "j", function() awful.tag.incnmaster(-1, nil, true) end,
     {description = "decrease the number of master clients", group = "layout"}),
 
   awful.key({ modkey, ctrlkey }, "l", function() awful.tag.incncol( 1, nil, true) end,
@@ -265,6 +259,13 @@ clientkeys = gears.table.join(
 
   awful.key({ modkey }, "t", function(c) c.ontop = not c.ontop end,
     {description = "toggle keep on top", group = "client"}),
+
+  -- Slave client resize
+  awful.key({ modkey, shiftkey }, "k" , function(c) awful.client.incwfact(0.05, c) end),
+    {description = "increase client size", group = "client"},
+
+  awful.key({ modkey, shiftkey }, "j" , function(c) awful.client.incwfact(-0.05, c) end),
+    {description = "decrease client size", group = "client"},
 
   awful.key({ modkey }, "m",
     function (c)
