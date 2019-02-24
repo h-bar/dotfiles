@@ -12,11 +12,7 @@ awful.rules.rules = {
       raise = false,
       buttons = clientbuttons,
       screen = awful.screen.preferred,
-      placement = awful.placement.no_overlap + awful.placement.no_offscreen,
       size_hints_honor = false,
-      honor_padding = true,
-      honor_workarea = true,
-      minimized = false
     }
   },
 

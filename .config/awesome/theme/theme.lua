@@ -44,9 +44,6 @@ theme.layout_max = theme.dir .. "/icons/max.png"
 theme.layout_fullscreen = theme.dir .. "/icons/fullscreen.png"
 theme.layout_magnifier = theme.dir .. "/icons/magnifier.png"
 theme.layout_floating = theme.dir .. "/icons/floating.png"
-theme.tasklist_plain_task_name = true
-theme.tasklist_disable_icon = true
-theme.tasklist_align = "center"
 theme.useless_gap = 5
 theme.maximized_hide_border = true
 theme.pw_bg = "#231929"
@@ -62,48 +59,43 @@ local mytextclock = wibox.widget.textclock(markup(white, cal_icon) .. markup(whi
 mytextclock.font = theme.font
 
 -- Calendar
-theme.cal = lain.widget.cal({
-  attach_to = { mytextclock },
-  notification_preset = {
-    font = "Misc Tamsyn 11",
-    fg = white,
-    bg = theme.bg_normal
-  }})
-  mytextclock:disconnect_signal("mouse::enter", theme.cal.hover_on)
+local mytextclock = wibox.widget.textclock()
+local month_calendar = awful.widget.calendar_popup.month()
+month_calendar:attach( mytextclock, "tc")
 
-  -- MPD
-  theme.mpdwidget = wibox.widget.textbox()
-  vicious.register(
-    theme.mpdwidget,
-    vicious.widgets.mpd,
-    function(widget, args)
-      if args["{state}"] == "Stop" then
-        return ""
-      else
-        return ('<span color="white">%s</span> - %s'):format(
-        args["{Artist}"], args["{Title}"])
-      end
-  end)
+-- MPD
+theme.mpdwidget = wibox.widget.textbox()
+vicious.register(
+  theme.mpdwidget,
+  vicious.widgets.mpd,
+  function(widget, args)
+    if args["{state}"] == "Stop" then
+      return ""
+    else
+      return ('<span color="white">%s</span> - %s'):format(
+      args["{Artist}"], args["{Title}"])
+    end
+end)
 
-  -- MPD Toggle
-  theme.mpd_toggle = wibox.widget.textbox()
-  vicious.register(
-    theme.mpd_toggle,
-    vicious.widgets.mpd,
-    function(widget, args)
-      local label = {["Play"] = "", ["Pause"] = "", ["Stop"] = "" }
-      return ("<span font=\"".. theme.iconFont .."\">%s</span> "):format(label[args["{state}"]])
-  end)
+-- MPD Toggle
+theme.mpd_toggle = wibox.widget.textbox()
+vicious.register(
+  theme.mpd_toggle,
+  vicious.widgets.mpd,
+  function(widget, args)
+    local label = {["Play"] = "", ["Pause"] = "", ["Stop"] = "" }
+    return ("<span font=\"".. theme.iconFont .."\">%s</span> "):format(label[args["{state}"]])
+end)
 
-  theme.mpd_toggle:buttons(awful.util.table.join(
-    awful.button({}, 1, function()
-    os.execute("mpc toggle")
-    vicious.force({theme.mpdwidget, theme.mpd_prev, theme.mpd_toggle, theme.mpd_next})
-  end),
-  awful.button({}, 3, function()
-    os.execute("mpc stop")
-    vicious.force({theme.mpdwidget, theme.mpd_prev, theme.mpd_toggle, theme.mpd_next})
-  end)
+theme.mpd_toggle:buttons(awful.util.table.join(
+  awful.button({}, 1, function()
+  os.execute("mpc toggle")
+  vicious.force({theme.mpdwidget, theme.mpd_prev, theme.mpd_toggle, theme.mpd_next})
+end),
+awful.button({}, 3, function()
+  os.execute("mpc stop")
+  vicious.force({theme.mpdwidget, theme.mpd_prev, theme.mpd_toggle, theme.mpd_next})
+end)
 ))
 
 -- MPD Previous
@@ -323,7 +315,6 @@ master_width_factor = i.mw or 0.5,
 end
 
 -- Create a promptbox for each screen
-s.mypromptbox = awful.widget.prompt()
 -- Create an imagebox widget which will contains an icon indicating which layout we're using.
 -- We need one layoutbox per screen.
 s.mylayoutbox = awful.widget.layoutbox(s)
@@ -343,44 +334,44 @@ awful.widget.tasklist.filter.focused
 )
 
 -- Create the wibox
-s.mywibox = awful.wibar({ position = "top", screen = s, height = 19, bg = theme.bg_normal, fg = theme.fg_normal })
+s.mywibox = awful.wibar({ position = "top", screen = s, height = 19 })
 
 -- Add widgets to the wibox
 s.mywibox:setup {
-layout = wibox.layout.align.horizontal,
-expand = 'none',
-{ -- Left widgets
-layout = wibox.layout.fixed.horizontal,
-s.mylayoutbox,
-first,
-s.mytaglist,
-s.mypromptbox,
-first,
-arrl_pre,
-wibox.container.background(theme.mpd_prev, theme.pw_bg),
-wibox.container.background(theme.mpd_toggle, theme.pw_bg),
-wibox.container.background(theme.mpd_next, theme.pw_bg),
-arrl_post,
-theme.mpdwidget,
-},
-wibox.container.place(mytextclock, "center"),
-{ -- Right widgets
-layout = wibox.layout.fixed.horizontal,
-wibox.widget.systray(),
-first,
-arll_pre,
-wibox.container.background(theme.ther, theme.pw_bg),
-arll_post,
-theme.fs,
-arll_pre,
-wibox.container.background(theme.cpu.widget, theme.pw_bg),
-arll_post,
-theme.mem,
-arll_pre,
-wibox.container.background(theme.volumewidget, theme.pw_bg),
-arll_post,
-theme.bat,
-},
+  layout = wibox.layout.align.horizontal,
+  expand = 'none',
+  { -- Left widgets
+    layout = wibox.layout.fixed.horizontal,
+    s.mylayoutbox,
+    first,
+    s.mytaglist,
+    s.mypromptbox,
+    first,
+    arrl_pre,
+    wibox.container.background(theme.mpd_prev, theme.pw_bg),
+    wibox.container.background(theme.mpd_toggle, theme.pw_bg),
+    wibox.container.background(theme.mpd_next, theme.pw_bg),
+    arrl_post,
+    theme.mpdwidget,
+  },
+    wibox.container.place(mytextclock, "center"),
+  { -- Right widgets
+    layout = wibox.layout.fixed.horizontal,
+    wibox.widget.systray(),
+    first,
+    arll_pre,
+    wibox.container.background(theme.ther, theme.pw_bg),
+    arll_post,
+    theme.fs,
+    arll_pre,
+    wibox.container.background(theme.cpu.widget, theme.pw_bg),
+    arll_post,
+    theme.mem,
+    arll_pre,
+    wibox.container.background(theme.volumewidget, theme.pw_bg),
+    arll_post,
+    theme.bat,
+  },
 }
 end
 
