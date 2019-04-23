@@ -197,37 +197,37 @@ end
 
 -- Battery
 theme.bat = lain.widget.bat({
-notify = "off",
-timeout = 10,
-settings = function()
-icon_color = "#0883ff"
-bat_perc = bat_now.perc
-if (bat_perc == 100) then
-  bat_icon = ""
-elseif (bat_perc >= 60 and bat_now.perc < 100) then
-  bat_icon = ""
-elseif (bat_perc >= 20 and bat_now.perc < 60) then
-  bat_icon = ""
-elseif (bat_perc > 20) then
-  bat_icon = ""
-  icon_color = "#ff1e8e"
-end
-bat_header = "<span font=\"".. theme.iconFont .."\">" .. bat_icon .. "</span> "
-if (bat_now.status == "Charging" or bat_now.status == "Full") then
-  bat_color = "#0883ff"
-elseif (bat_now.status == "Discharging" and bat_perc <= 15) then
-  bat_color = "#ff1e8e"
-else
-  bat_color = white
-end
-bat_p = bat_perc .. "%"
-if is_laptop then
-  widget:set_markup(
-    markup.font(
-    theme.font, markup(icon_color, bat_header) .. markup(bat_color, bat_p) )
-  )
-end
-end
+  notify = "off",
+  timeout = 10,
+  settings = function()
+    icon_color = "#0883ff"
+    bat_perc = bat_now.perc
+    if (bat_perc == 100) then
+      bat_icon = ""
+    elseif (bat_perc >= 60) then
+      bat_icon = ""
+    elseif (bat_perc >= 20 and bat_perc < 60) then
+      bat_icon = ""
+    else
+      bat_icon = ""
+      icon_color = "#ff1e8e"
+    end
+    bat_header = "<span font=\"".. theme.iconFont .."\">" .. bat_icon .. "</span> "
+    if (bat_now.status == "Charging" or bat_now.status == "Full") then
+      bat_color = "#0883ff"
+    elseif (bat_now.status == "Discharging" and bat_perc <= 15) then
+      bat_color = "#ff1e8e"
+    else
+      bat_color = white
+    end
+    bat_p = bat_perc .. "%"
+    if is_laptop then
+      widget:set_markup(
+        markup.font(
+        theme.font, markup(icon_color, bat_header) .. markup(bat_color, bat_p) )
+      )
+    end
+  end
 })
 
 theme.bat.widget:buttons(awful.util.table.join(
