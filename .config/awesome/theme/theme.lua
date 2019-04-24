@@ -164,12 +164,12 @@ function(widget, args)
   local fs_icon = ("<span color=\"%s\" font=\"%s\"></span>"):format(
     "#fc4f8e", theme.iconFont
   )
-  return ("%s <span color=\"%s\">%s°C</span>"):format(
+  return ("%s <span color=\"%s\">%02d°C</span>"):format(
     fs_icon, white, args[1]
   )
 end,
 19,
-"thermal_zone1"
+"thermal_zone2"
 )
 
 -- Mem
@@ -181,7 +181,7 @@ function(widget, args)
   local mem_icon = ("<span color=\"%s\" font=\"%s\"></span>"):format(
     "#a753fc", theme.iconFont
   )
-  return ("%s <span color=\"%s\">%s%%</span>"):format(
+  return ("%s <span color=\"%s\">%02d%%</span>"):format(
     mem_icon, white, args[1]
   )
 end
@@ -191,7 +191,7 @@ end
 theme.cpu = lain.widget.cpu({
 settings = function()
 local cpu_icon = "<span font=\"".. theme.iconFont .."\"></span> "
-widget:set_markup(markup.font(theme.font, markup("#1eff8e", cpu_icon) .. markup(white, cpu_now.usage .. "% ")))
+widget:set_markup(markup.font(theme.font, markup("#1eff8e", cpu_icon) .. markup(white, string.format("%02d", cpu_now.usage) .. "% ")))
 end
 })
 
@@ -224,7 +224,7 @@ theme.bat = lain.widget.bat({
     if is_laptop then
       widget:set_markup(
         markup.font(
-        theme.font, markup(icon_color, bat_header) .. markup(bat_color, bat_p) )
+        theme.font, markup(icon_color, bat_header) .. markup(bat_color, string.format("%02d", bat_p)) )
       )
     end
   end
@@ -262,7 +262,7 @@ end
 local vheader = ("<span color=\"%s\" font=\"%s\">%s</span>"):format(
 vol_icon_color, theme.iconFont, vol_icon
 )
-return ("<span color=\"%s\">%s %s </span>"):format(
+return ("<span color=\"%s\">%s %02d </span>"):format(
 vol_color, vheader, cur_vol
 )
 end, 2, {"Master", "-D", "pulse"})
