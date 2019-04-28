@@ -34,6 +34,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'yggdroot/indentline'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+Plugin 'raimondi/delimitmate'
 
 Plugin 'fatih/vim-go'
 Plugin 'w0rp/ale'
@@ -56,8 +57,20 @@ set tabstop=4
 set softtabstop=0 noexpandtab
 set shiftwidth=4
 
+autocmd FileType python set sw=4
+autocmd FileType python set ts=4
+autocmd FileType python set sts=4
+
+autocmd FileType lua set sw=2
+autocmd FileType lua set ts=2
+autocmd FileType lua set expandtab
+
 let g:indentLine_color_term = 239
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+
+let g:tagbar_sort = 0
+let g:tagbar_foldlevel = 1
+autocmd FileType c,cpp,python,go,css,javascript nested :TagbarOpen
 
 let g:ycm_seed_identifiers_with_syntax = 1 " Completion for programming language's keyword
 let g:ycm_complete_in_comments = 1 " Completion in comments
@@ -69,18 +82,22 @@ let g:ycm_seed_identifiers_with_syntax = 1 " Completion for programming language
 let g:ycm_complete_in_comments = 1 " Completion in comments
 let g:ycm_complete_in_strings = 1 " Completion in string
 
-let g:UltiSnipsExpandTrigger       = "<c-j>"
-let g:UltiSnipsJumpForwardTrigger  = "<c-j>"
+let g:UltiSnipsExpandTrigger = "<c-j>"
+let g:UltiSnipsJumpForwardTrigger = "<c-j>"
 let g:UltiSnipsJumpBackwardTrigger = "<c-p>"
-let g:UltiSnipsListSnippets        = "<c-k>"
+let g:UltiSnipsListSnippets = "<c-k>"
 
-let g:user_emmet_mode='a'
+let g:user_emmet_mode = 'a'
 
 let g:airline#extensions#tabline#enabled = 1
 
 let g:vim_markdown_folding_disabled = 1
 
 let g:goyo_width = 100
+
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 0
+
 
 autocmd FileType python map <buffer> <F7> :call Flake8()<CR>
 autocmd FileType go map <buffer> <F7> :GoBuild <CR>
