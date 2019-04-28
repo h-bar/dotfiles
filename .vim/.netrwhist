@@ -1,8 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/home/kofteistkofte/Projects/virtualenvs/bypasscms/lib/python3.6/site-packages/ckeditor/static/ckeditor/ckeditor/plugins/embed'
-let g:netrw_dirhist_2='/home/kofteistkofte/Projects'
-let g:netrw_dirhist_3='/home/kofteistkofte/.config/inkscape'
-let g:netrw_dirhist_4='/usr/share/fonts'
-let g:netrw_dirhist_5='/usr/share/fonts/TTF'
-let g:netrw_dirhist_6='/home/kofteistkofte/.config/polybar'
