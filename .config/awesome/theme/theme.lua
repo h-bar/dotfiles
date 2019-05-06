@@ -158,18 +158,18 @@ end,
 -- Thermal
 theme.ther = wibox.widget.textbox()
 vicious.register(
-theme.ther,
-vicious.widgets.thermal,
-function(widget, args)
-  local fs_icon = ("<span color=\"%s\" font=\"%s\"></span>"):format(
-    "#fc4f8e", theme.iconFont
-  )
-  return ("%s <span color=\"%s\">%02d°C</span>"):format(
-    fs_icon, white, args[1]
-  )
-end,
-19,
-"thermal_zone2"
+  theme.ther,
+  vicious.widgets.thermal,
+  function(widget, args)
+    local fs_icon = ("<span color=\"%s\" font=\"%s\"></span>"):format(
+      "#fc4f8e", theme.iconFont
+    )
+    return ("%s <span color=\"%s\">%02d°C</span>"):format(
+      fs_icon, white, args[1]
+    )
+  end,
+  19,
+  "thermal_zone2"
 )
 
 -- Mem
