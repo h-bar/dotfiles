@@ -174,6 +174,11 @@ globalkeys = gears.table.join(
       awful.spawn.with_shell(lockscreen)
     end,
     {description = "lock screen", group = "launcher"}),
+  awful.key({ modkey }, "p",
+    function()
+      awful.spawn.with_shell("startproject")
+    end,
+    {description = "project selector", group = "launcher"}),
 
   -- Volume Control
   awful.key({}, "XF86AudioMute",

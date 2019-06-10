@@ -15,7 +15,8 @@ if [ -f $DICT_FILE ]; then
 	if [[ $choice ]]; then
 		# use eval as get vim error if use awk's "system"
 		PROJ_DIR=$(eval $(awk '/'$choice'/ && NF == 2 {printf("'echo' %s",$2); exit}' $FILES))
-		awesome-client "awful.tag.viewidx(2, 1)" &&
+		sleep 3
+		awesome-client "awful = require('awful') awful.tag.viewidx(2,1)" > $HOME/errorlog &&
 
 		cd $PROJ_DIR && exec urxvtc -e vim &
 		sleep 0.1 && cd $PROJ_DIR && exec urxvtc -e pipenv shell python manage.py runserver &
