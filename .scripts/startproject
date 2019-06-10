@@ -18,14 +18,14 @@ if [ -f $DICT_FILE ]; then
 		PROJ_TYPE=$(eval $(awk '/'$choice'/ {printf("'echo' %s",$3); exit}' $FILES))
 		MAIN_FILE=$(eval $(awk '/'$choice'/ {printf("'echo' %s",$4); exit}' $FILES))
 
-		awesome-client "awful = require('awful') local screen = awful.screen.focused() screen.tags[3]:view_only()" > errorlog &
+		awesome-client "awful = require('awful') local screen = awful.screen.focused() screen.tags[3]:view_only()" &&
 
 		cd $PROJ_DIR && exec urxvtc -e vim &
 		if [ $PROJ_TYPE = "python" ]; then
 			sleep 0.1 && cd $PROJ_DIR && exec urxvtc -e pipenv shell python manage.py runserver &
 			sleep 0.2 && cd $PROJ_DIR && exec urxvtc -e pipenv shell &
 		elif [ $PROJ_TYPE = "go" ]; then
-			sleep 0.1 && cd $PROJ_DIR && exec urxvtc -e fish -c "go run main.go;fish" &
+			sleep 0.1 && cd $PROJ_DIR && exec urxvtc -e fish -c "go run $MAIN_FILE;fish" &
 			sleep 0.2 && cd $PROJ_DIR && exec urxvtc &
 		else
 			sleep 0.1 && cd $PROJ_DIR && exec urxvtc &
