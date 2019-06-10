@@ -1,0 +1,27 @@
+#!/bin/sh
+#
+# dedit: Use dmenu to open and edit a file from a given list.
+
+# Global variables:
+DICT_FILE=$HOME/.config/project_list
+DMENU='rofi -dmenu'
+
+if [ -f $DICT_FILE ]; then
+	FILES=${1:-"$DICT_FILE"}
+
+	# Show list of options
+	choice=$(awk '{print $1}' $FILES | $DMENU -p "Select Project:")
+
+	if [[ $choice ]]; then
+		# use eval as get vim error if use awk's "system"
+		PROJ_DIR=$(eval $(awk '/'$choice'/ && NF == 2 {printf("'echo' %s",$2); exit}' $FILES))
+		awesome-client "awful.tag.viewidx(2, 1)" &&
+
+		cd $PROJ_DIR && exec urxvtc -e vim &
+		sleep 0.1 && cd $PROJ_DIR && exec urxvtc -e pipenv shell python manage.py runserver &
+		sleep 0.2 && cd $PROJ_DIR && exec urxvtc -e pipenv shell &
+		sleep 0.5 && awesome-client "awful.client.focus.byidx(1)"
+	fi
+else
+	$DMENU -p "project_list file does not exits"
+fi
