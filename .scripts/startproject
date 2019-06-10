@@ -10,17 +10,26 @@ if [ -f $DICT_FILE ]; then
 	FILES=${1:-"$DICT_FILE"}
 
 	# Show list of options
-	choice=$(awk '{print $1}' $FILES | $DMENU -p "Select Project:")
+	choice=$(awk '{print $1}' $FILES | $DMENU -i -p "Select Project")
 
 	if [[ $choice ]]; then
 		# use eval as get vim error if use awk's "system"
-		PROJ_DIR=$(eval $(awk '/'$choice'/ && NF == 2 {printf("'echo' %s",$2); exit}' $FILES))
-		sleep 3
-		awesome-client "awful = require('awful') awful.tag.viewidx(2,1)" > $HOME/errorlog &&
+		PROJ_DIR=$(eval $(awk '/'$choice'/ {printf("'echo' %s",$2); exit}' $FILES))
+		PROJ_TYPE=$(eval $(awk '/'$choice'/ {printf("'echo' %s",$3); exit}' $FILES))
+		MAIN_FILE=$(eval $(awk '/'$choice'/ {printf("'echo' %s",$4); exit}' $FILES))
+
+		awesome-client "awful = require('awful') local screen = awful.screen.focused() screen.tags[3]:view_only()" > errorlog &
 
 		cd $PROJ_DIR && exec urxvtc -e vim &
-		sleep 0.1 && cd $PROJ_DIR && exec urxvtc -e pipenv shell python manage.py runserver &
-		sleep 0.2 && cd $PROJ_DIR && exec urxvtc -e pipenv shell &
+		if [ $PROJ_TYPE = "python" ]; then
+			sleep 0.1 && cd $PROJ_DIR && exec urxvtc -e pipenv shell python manage.py runserver &
+			sleep 0.2 && cd $PROJ_DIR && exec urxvtc -e pipenv shell &
+		elif [ $PROJ_TYPE = "go" ]; then
+			sleep 0.1 && cd $PROJ_DIR && exec urxvtc -e fish -c "go run main.go;fish" &
+			sleep 0.2 && cd $PROJ_DIR && exec urxvtc &
+		else
+			sleep 0.1 && cd $PROJ_DIR && exec urxvtc &
+		fi
 		sleep 0.5 && awesome-client "awful.client.focus.byidx(1)"
 	fi
 else
