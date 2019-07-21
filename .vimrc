@@ -23,18 +23,10 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 
 Plugin 'tpope/vim-surround'
-Plugin 'terryma/vim-multiple-cursors'
 Plugin 'godlygeek/tabular'
 Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-commentary'
 Plugin 'mattn/emmet-vim'
-
-Plugin 'valloric/youcompleteme'
-Plugin 'scrooloose/syntastic'
-Plugin 'yggdroot/indentline'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'raimondi/delimitmate'
 
 Plugin 'fatih/vim-go'
 Plugin 'w0rp/ale'
@@ -44,6 +36,11 @@ Plugin 'jmcomets/vim-pony'
 
 Plugin 'plasticboy/vim-markdown'
 Plugin 'pangloss/vim-javascript'
+
+Plugin 'valloric/youcompleteme'
+Plugin 'scrooloose/syntastic'
+Plugin 'yggdroot/indentline'
+Plugin 'raimondi/delimitmate'
 
 
 " All of your Plugins must be added before the following line
@@ -95,6 +92,8 @@ let g:goyo_width = 100
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
 
+let delimitMate_expand_cr = 2
+
 
 autocmd FileType python map <buffer> <F7> :call Flake8()<CR>
 autocmd FileType go map <buffer> <F7> :GoBuild <CR>
@@ -125,3 +124,13 @@ map <C-s><up> :tabr<cr>
 map <C-s><down> :tabl<cr>
 map <C-s><left> :tabp<cr>
 map <C-s><right> :tabn<cr>
+
+
+let g:delimitMate_autoclose = 1
+let g:delimitMate_matchpairs = "(:),[:],{:},<:>"
+let g:delimitMate_jump_expansion = 1
+let g:delimitMate_expand_space = 1
+let g:delimitMate_expand_cr = 2
+let g:delimitMate_expand_inside_quotes = 1
+
+inoremap {<CR> {<CR>} <C-o>O
