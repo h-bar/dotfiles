@@ -1,8 +1,10 @@
 #!/bin/sh
 #
-# dedit: Use dmenu to open and edit a file from a given list.
+# Opens a project with vim and 1 or 2 terminals by project type
+# You need to have your project list at "~/.config/project_list"
+# Example = "Example_Project	~/Projects/example	python"
+# Go projects also needs a 4th object in the list for projects main file
 
-# Global variables:
 DICT_FILE=$HOME/.config/project_list
 DMENU='rofi -dmenu'
 
@@ -16,16 +18,18 @@ if [ -f $DICT_FILE ]; then
 		# use eval as get vim error if use awk's "system"
 		PROJ_DIR=$(eval $(awk '/'$choice'/ {printf("'echo' %s",$2); exit}' $FILES))
 		PROJ_TYPE=$(eval $(awk '/'$choice'/ {printf("'echo' %s",$3); exit}' $FILES))
-		MAIN_FILE=$(eval $(awk '/'$choice'/ {printf("'echo' %s",$4); exit}' $FILES))
 
 		awesome-client "awful = require('awful') local screen = awful.screen.focused() screen.tags[3]:view_only()" &&
 
 		cd $PROJ_DIR && exec urxvtc -e vim &
-		if [ $PROJ_TYPE = "python" ]; then
+		if [ $PROJ_TYPE = "django" ]; then
 			sleep 0.1 && cd $PROJ_DIR && exec urxvtc -e pipenv shell python manage.py runserver &
 			sleep 0.2 && cd $PROJ_DIR && exec urxvtc -e pipenv shell &
 		elif [ $PROJ_TYPE = "go" ]; then
-			sleep 0.1 && cd $PROJ_DIR && exec urxvtc -e fish -c "go run $MAIN_FILE;fish" &
+			MAIN_FILE=$(eval $(awk '/'$choice'/ {printf("'echo' %s",$4); exit}' $FILES))
+			if [ -f $MAIN_FILE ]; then
+				sleep 0.1 && cd $PROJ_DIR && exec urxvtc -e fish -c "go run $MAIN_FILE;fish" &
+			fi
 			sleep 0.2 && cd $PROJ_DIR && exec urxvtc &
 		else
 			sleep 0.1 && cd $PROJ_DIR && exec urxvtc &

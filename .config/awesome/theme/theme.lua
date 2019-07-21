@@ -266,22 +266,22 @@ vicious.register(theme.volumewidget, vicious.widgets.volume,
     return ("<span color=\"%s\">%s %s </span>"):format(
       vol_color, vheader, cur_vol
     )
-end, 2, {"Master", "-D", "pulse"})
+end, 2, {"Master", "pulse"})
 
 theme.volumewidget:buttons(awful.util.table.join(
   awful.button({}, 2, function() -- left click
     awful.spawn("pavucontrol")
   end),
   awful.button({}, 3, function() -- right click
-    os.execute("amixer set Master toggle")
+    os.execute("pulsemixer --toggle-mute")
     vicious.force({theme.volumewidget})
   end),
   awful.button({}, 4, function() -- scroll up
-    os.execute("amixer set Master 2%+")
+    os.execute("pulsemixer --change-volume +2")
     vicious.force({theme.volumewidget})
   end),
   awful.button({}, 5, function() -- scroll down
-    os.execute("amixer set Master 2%-")
+    os.execute("pulsemixer --change-volume -2")
     vicious.force({theme.volumewidget})
   end)
 ))
