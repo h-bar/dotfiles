@@ -346,6 +346,7 @@ function theme.at_screen_connect(s)
       wibox.container.place(mytextclock, "center"),
     { -- Right widgets
       layout = wibox.layout.fixed.horizontal,
+      id = "rightwidgets",
       wibox.widget.systray(),
       seperator,
       theme.ther,
@@ -357,10 +358,13 @@ function theme.at_screen_connect(s)
       theme.mem,
       seperator,
       theme.volumewidget,
-      seperator,
-      theme.bat,
     },
   }
+  if is_laptop then
+    s.mywibox:get_children_by_id("rightwidgets")[1]:insert(12, seperator, theme.bat)
+  else
+    s.mywibox:get_children_by_id("rightwidgets")[1]:insert(12, space)
+  end
 end
 
 return theme
