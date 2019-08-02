@@ -371,9 +371,9 @@ function theme.at_screen_connect(s)
     },
   }
   if is_laptop then
-    s.mywibox:get_children_by_id("rightwidgets")[1]:insert(12, seperator)
+    s.mywibox:get_children_by_id("rightwidgets")[1]:insert(15, seperator)
   else
-    s.mywibox:get_children_by_id("rightwidgets")[1]:insert(12, space)
+    s.mywibox:get_children_by_id("rightwidgets")[1]:insert(15, space)
   end
 end
 
