@@ -99,12 +99,11 @@ client.connect_signal("focus", border_adjust)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
 -- Autostart
-for _, i in pairs(autostart) do
-  awful.spawn.with_shell("~/.config/awesome/autorun.sh " .. i)
-end
+-- for _, i in pairs(autostart) do
+--  awful.spawn.with_shell("~/.config/awesome/autorun.sh " .. i)
+-- end
 
-awful.spawn.with_shell("setxkbmap " .. kb_layout)
-awful.spawn.with_shell("pulsemixer --unmute")
+-- awful.spawn.with_shell("pulsemixer --unmute")
 
 
 -- Quake terminal

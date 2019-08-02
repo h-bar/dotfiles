@@ -17,7 +17,7 @@ theme.wallpaper = os.getenv("HOME") .. "/.config/wall.png"
 theme.font = "Roboto Medium 9"
 theme.taglist_font = "Roboto Bold 9"
 theme.iconFont = "Font Awesome 5 Free Regular 9"
-theme.fg_normal = "#bbb"
+theme.fg_normal = "#fff"
 theme.fg_focus = white
 theme.bg_normal = "#2F343F"
 theme.bg_focus = "#2F343F"
@@ -28,6 +28,8 @@ theme.border_normal = "#121212"
 theme.border_focus = "#8e1eff"
 theme.titlebar_bg_focus = "#292929"
 theme.taglist_fg_focus = theme.bg_normal
+theme.taglist_fg_empty = "#bbb"
+theme.taglist_fg_occupied = "#bbb"
 theme.taglist_fg_normal = gray
 theme.taglist_bg_occupied = "#4a4a4a"
 theme.taglist_bg_focus = "#b9b9b9"
@@ -63,6 +65,10 @@ mytextclock.font = theme.font
 -- Calendar
 local month_calendar = awful.widget.calendar_popup.month()
 month_calendar:attach( mytextclock, "tc")
+
+-- Keyboard Layout
+local key_icon = wibox.widget.textbox("<span color=\"darksalmon\" font=\"".. theme.iconFont .."\"></span>")
+theme.kblayout = awful.widget.keyboardlayout()
 
 -- MPD
 theme.mpdwidget = wibox.widget.textbox()
@@ -348,6 +354,9 @@ function theme.at_screen_connect(s)
       layout = wibox.layout.fixed.horizontal,
       id = "rightwidgets",
       wibox.widget.systray(),
+      seperator,
+      key_icon,
+      theme.kblayout,
       seperator,
       theme.ther,
       seperator,
