@@ -50,6 +50,7 @@ filetype plugin indent on    " required
 let g:deoplete#enable_at_startup = 1
 
 syntax on
+colorscheme zellner
 set number
 
 set tabstop=4
