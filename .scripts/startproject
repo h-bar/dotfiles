@@ -23,18 +23,18 @@ if [ -f $DICT_FILE ]; then
 
 		cd $PROJ_DIR && exec urxvtc -e vim &
 		if [ $PROJ_TYPE = "django" ]; then
-			sleep 0.1 && cd $PROJ_DIR && exec urxvtc -e pipenv shell python manage.py runserver &
-			sleep 0.2 && cd $PROJ_DIR && exec urxvtc -e pipenv shell &
+			sleep 0.3 && cd $PROJ_DIR && exec urxvtc -e pipenv shell python manage.py runserver &
+			sleep 0.5 && cd $PROJ_DIR && exec urxvtc -e pipenv shell &
 		elif [ $PROJ_TYPE = "go" ]; then
 			MAIN_FILE=$(eval $(awk '/'$choice'/ {printf("'echo' %s",$4); exit}' $FILES))
 			if [ -f $MAIN_FILE ]; then
-				sleep 0.1 && cd $PROJ_DIR && exec urxvtc -e fish -c "go run $MAIN_FILE;fish" &
+				sleep 0.5 && cd $PROJ_DIR && exec urxvtc -e fish -c "go run $MAIN_FILE;fish" &
 			fi
-			sleep 0.2 && cd $PROJ_DIR && exec urxvtc &
+			sleep 0.5 && cd $PROJ_DIR && exec urxvtc &
 		else
-			sleep 0.1 && cd $PROJ_DIR && exec urxvtc &
+			sleep 0.5 && cd $PROJ_DIR && exec urxvtc &
 		fi
-		sleep 0.5 && awesome-client "awful.client.focus.byidx(1)"
+		sleep 0.7 && awesome-client "awful.client.focus.byidx(1)"
 	fi
 else
 	$DMENU -p "project_list file does not exits"
