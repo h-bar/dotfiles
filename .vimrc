@@ -33,6 +33,7 @@ Plugin 'w0rp/ale'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'nvie/vim-flake8'
 Plugin 'jmcomets/vim-pony'
+Plugin 'tweekmonster/django-plus.vim'
 
 Plugin 'plasticboy/vim-markdown'
 Plugin 'pangloss/vim-javascript'

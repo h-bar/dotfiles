@@ -13,7 +13,6 @@ local gray = "#858585"
 
 local theme = {}
 theme.dir = os.getenv("HOME") .. "/.config/awesome/theme"
-theme.wallpaper = os.getenv("HOME") .. "/.config/wall.png"
 theme.font = "Roboto Medium 9"
 theme.taglist_font = "Roboto Bold 9"
 theme.iconFont = "Font Awesome 5 Free Regular 9"
@@ -293,13 +292,6 @@ theme.volumewidget:buttons(awful.util.table.join(
 ))
 
 function theme.at_screen_connect(s)
-
-  -- If wallpaper is a function, call it with the screen
-  local wallpaper = theme.wallpaper
-  if type(wallpaper) == "function" then
-    wallpaper = wallpaper(s)
-  end
-    gears.wallpaper.maximized(wallpaper, s)
 
   -- Tags
   --awful.tag(awful.util.tagnames, s, awful.layout.layouts[1])

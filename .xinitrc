@@ -38,6 +38,7 @@ nm-applet &
 udiskie --smart-tray &
 mopidy &
 redshift-gtk &
+nitrogen --restore &
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 # uim-xim &
