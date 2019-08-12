@@ -55,16 +55,17 @@ colorscheme zellner
 set number
 
 set tabstop=4
-set softtabstop=0 noexpandtab
+set softtabstop=4
 set shiftwidth=4
+set expandtab
 
 autocmd FileType python set sw=4
 autocmd FileType python set ts=4
 autocmd FileType python set sts=4
 
-autocmd FileType lua set sw=2
-autocmd FileType lua set ts=2
-autocmd FileType lua set expandtab
+autocmd FileType lua,html,htmldjango set sw=2
+autocmd FileType lua,html,htmldjango set ts=2
+autocmd FileType lua,html,htmldjango set expandtab
 
 let g:indentLine_color_term = 239
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
