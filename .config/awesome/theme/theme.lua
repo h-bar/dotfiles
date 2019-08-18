@@ -58,7 +58,7 @@ local seperator = wibox.widget.textbox(' <span color="grey">|</span>  ')
 -- Textclock
 local cal_icon = " <span color=\"#a753fc\" font=\"".. theme.iconFont .."\"></span>"
 local mytextclock = wibox.widget.textclock(markup(white, cal_icon) .. markup(gray, " %d ")
-.. markup(white, "%b ") .. markup(gray, " %a ") .. markup(white, "%H:%M %p "))
+.. markup(white, "%b ") .. markup(gray, " %a ") .. markup(white, "%I:%M %p "))
 mytextclock.font = theme.font
 
 -- Calendar

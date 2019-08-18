@@ -46,7 +46,7 @@ URxvt.intensityStyles:	true
 URxvt.background:       [88]#000000
 URxvt.multichar_encoding: utf-8
 URxvt.depth:		32
-URxvt.font:	xft:Hack Nerd Font Mono:size=10, xft:PowerlineSymbols=Regular:pixelsize=9:encoding=utf-8, xft:Noto Sans CJK JP:style=Bold
+URxvt.font:	xft:Hack Nerd Font Mono:size=10:antialiasing=true, xft:PowerlineSymbols=Regular:pixelsize=9:encoding=utf-8, xft:Noto Sans CJK JP:style=Bold
 URxvt.imFont: xft:Hack Nerd Font Mono:size=16, xft:PowerlineSymbols=Regular:pixelsize=9:encoding=utf-8, xft:Noto Sans CJ JP:style=Bold
 URxvt.imLocale:   ja_JP.UTF-8
 URxvt.scrollBar:	false
@@ -55,10 +55,12 @@ Urxvt.skipBuiltinGlyphs: = false
 
 !! Extensions
 URxvt.perl-ext-common:	default,matcher,url-select,keyboard-select,font-size
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
 URxvt.colorUL:		#4682B4
 !! url-select
 URxvt.keysym.M-u:	perl:url-select:select_next
-URxvt.url-select.launcher: linkhandler
+URxvt.url-select.launcher: /usr/bin/xdg-open
 URxvt.url-select.underline: true
 !! keyboard-select:
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
@@ -66,9 +68,6 @@ URxvt.keysym.M-Escape: perl:keyboard-select:activate
 !URxvt.keysym.Shift-Down:     resize-font:smaller
 !URxvt.keysym.Shift-Up:      resize-font:bigger
 !URxvt.keysym.Control-0:     resize-font:reset
-! Matcher
-URxvt.url-launcher:	linkhandler
-URxvt.matcher.button:	1
 
 URxvt.keysym.Control-Up:   \033[1;5A
 URxvt.keysym.Control-Down:    \033[1;5B
