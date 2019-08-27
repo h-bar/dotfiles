@@ -1,0 +1,62 @@
+local awful = require("awful")
+local wibox = require("wibox")
+local beautiful = require("beautiful")
+local build_widget = require("widgets.build_widget")
+
+local bat_perc = wibox.widget{
+  markup = "00%",
+  align  = 'center',
+  valign = 'center',
+  widget = wibox.widget.textbox
+}
+
+local bat_icon = ""
+local bat_icon_color = "#0883ff"
+local bat_text_color = beautiful.fg_normal
+
+local bat_value_update = function (value, color)
+	bat_perc.markup = '<span color="' .. color ..'">' .. value ..'%</span>'
+end
+
+awesome.connect_signal("evil::charger", function(plugged)
+  if plugged then
+    bat_text_color = bat_icon_color
+  else
+    bat_text_color = beautiful.fg_normal
+  end
+end)
+	
+
+awesome.connect_signal("evil::battery", function(value)
+  local bat_now = value
+
+  if bat_icon ~= "" and bat_now >= 90 then
+    bat_icon = ""
+    bat_warning = false
+  elseif bat_icon ~= "" and bat_now < 90 and bat_now >= 60 then
+    bat_icon = ""
+    bat_warning = false
+  elseif bat_icon ~= "" and bat_now < 60 and bat_now >= 20 then
+    bat_icon = ""
+    bat_warning = false
+  elseif bat_icon ~= "" and bat_now < 20 then
+    bat_icon = ""
+    bat_warning = true
+  end
+  
+  if bat_warning and bat_icon_color ~= "red" then
+    bat_icon_color = "red"
+  elseif not bat_warning and bat_icon_color ~= "#0883ff" then
+    bat_icon_color = "#0883ff"
+  end
+
+  bat_value_update(value, bat_text_color)
+end)
+
+bat = build_widget:new(bat_perc, bat_icon, bat_icon_color, true)
+
+if is_laptop then
+  return bat.widget
+else
+  return wibar.widget.textbox("")
+end

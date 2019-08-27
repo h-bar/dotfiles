@@ -8,15 +8,15 @@ local awful = require("awful")
 
 local function emit_volume_info()
     -- Get volume info
-    awful.spawn.easy_async("pactl list sinks",
+    awful.spawn.easy_async("pulsemixer --get-volume --get-mute",
         function(stdout)
-            local volume = stdout:match('(%d+)%% /')
-            local muted = stdout:match('Mute:(%s+)[yes]')
-            if muted ~= nil then
-                awesome.emit_signal("evil::volume", tonumber(volume), true)
-            else
-                awesome.emit_signal("evil::volume", tonumber(volume), false)
-            end
+          local stdout_sl = string.gsub(stdout, "\n", " ")
+          local volume, _, muted = stdout_sl:match("(%w+) (%w+) (%w+)")
+          if muted == "1" then
+              awesome.emit_signal("evil::volume", tonumber(volume), true)
+          else
+              awesome.emit_signal("evil::volume", tonumber(volume), false)
+          end
         end
     )
 end

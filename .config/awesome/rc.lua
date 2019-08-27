@@ -116,8 +116,8 @@ awful.screen.connect_for_each_screen(function(s)
       seperator,
       widgets.cpu,
       widgets.mem,
-      beautiful.volumewidget,
-      beautiful.bat
+      widgets.vol,
+      widgets.bat
     },
   }
   if is_laptop then
