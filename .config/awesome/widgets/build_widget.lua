@@ -32,7 +32,7 @@ function build_widget:new (value_widget, icon, icon_color, last)
       obj.widget_icon,
       value_widget,
       obj.pipe,
-      spacing = dpi(2),
+      spacing = dpi(3),
       layout = wibox.layout.fixed.horizontal
     },
     expand = "none",

@@ -55,26 +55,6 @@ theme.maximized_hide_border = true
 theme.pw_bg = "#231929"
 
 
-
-
--- Separators
-local space = wibox.widget.textbox('<span>  </span>')
-local seperator = wibox.widget.textbox(' <span color="grey">|</span>  ')
-
--- Textclock
-local cal_icon = " <span color=\"#a753fc\" font=\"".. theme.iconFont .."\"></span>"
-local mytextclock = wibox.widget.textclock(markup(white, cal_icon) .. markup(gray, " %d ")
-.. markup(white, "%b ") .. markup(gray, " %a ") .. markup(white, "%I:%M %p "))
-mytextclock.font = theme.font
-
--- Calendar
-local month_calendar = awful.widget.calendar_popup.month()
-month_calendar:attach( mytextclock, "tc")
-
--- Keyboard Layout
-local key_icon = wibox.widget.textbox("<span color=\"darksalmon\" font=\"".. theme.iconFont .."\"></span>")
-theme.kblayout = awful.widget.keyboardlayout()
-
 -- MPD
 theme.mpdwidget = wibox.widget.textbox()
 vicious.register(
@@ -147,101 +127,6 @@ theme.mpd_next:buttons(awful.util.table.join(
   awful.button({}, 1, function()
   os.execute("mpc next")
   vicious.force({theme.mpdwidget, theme.mpd_prev, theme.mpd_toggle, theme.mpd_next})
-end)
-))
-
--- FS
-theme.fs = wibox.widget.textbox()
-vicious.cache(vicious.widgets.fs)
-vicious.register(
-theme.fs,
-vicious.widgets.fs,
-function(widget, args)
-  local fs_icon = ("<span color=\"%s\" font=\"%s\"></span>"):format(
-    "#b6b6b6", theme.iconFont
-  )
-  return ("%s <span color=\"%s\">%s%%</span>"):format(
-    fs_icon, white, args["{/ used_p}"]
-  )
-end,
-999
-)
-
--- Thermal
-theme.ther = wibox.widget.textbox()
-vicious.register(
-  theme.ther,
-  vicious.widgets.thermal,
-  function(widget, args)
-    local fs_icon = ("<span color=\"%s\" font=\"%s\"></span>"):format(
-      "#fc4f8e", theme.iconFont
-    )
-    return ("%s <span color=\"%s\">%02d°C</span>"):format(
-      fs_icon, white, args[1]
-    )
-  end,
-  19,
-  "thermal_zone2"
-)
-
--- Mem
-theme.mem = wibox.widget.textbox()
-vicious.register(
-theme.mem,
-vicious.widgets.mem,
-function(widget, args)
-  local mem_icon = ("<span color=\"%s\" font=\"%s\"></span>"):format(
-    "#a753fc", theme.iconFont
-  )
-  return ("%s <span color=\"%s\">%02d%%</span>"):format(
-    mem_icon, white, args[1]
-  )
-end
-)
-
--- CPU
-
--- Battery
-theme.bat = lain.widget.bat({
-  notify = "off",
-  timeout = 10,
-  settings = function()
-    icon_color = "#0883ff"
-    bat_perc = bat_now.perc
-    if (bat_perc == 100) then
-      bat_icon = ""
-    elseif (bat_perc >= 60) then
-      bat_icon = ""
-    elseif (bat_perc >= 20 and bat_perc < 60) then
-      bat_icon = ""
-    else
-      bat_icon = ""
-      icon_color = "#ff1e8e"
-    end
-    bat_header = "<span font=\"".. theme.iconFont .."\">" .. bat_icon .. "</span> "
-    if (bat_now.status == "Charging" or bat_now.status == "Full") then
-      bat_color = "#0883ff"
-    elseif (bat_now.status == "Discharging" and bat_perc <= 15) then
-      bat_color = "#ff1e8e"
-    else
-      bat_color = white
-    end
-    bat_p = bat_perc .. "%"
-    if is_laptop then
-      widget:set_markup(
-        markup.font(
-        theme.font, markup(icon_color, bat_header) .. markup(bat_color, bat_p) )
-      )
-    end
-  end
-})
-
-theme.bat.widget:buttons(awful.util.table.join(
-awful.button({}, 4, function() -- scroll up
-os.execute("light -A 5")
-end),
-awful.button({}, 5, function() -- scroll down
-os.execute("light -U 5")
 end)
 ))
 
