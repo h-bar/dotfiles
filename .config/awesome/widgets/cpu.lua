@@ -1,14 +1,18 @@
 local awful = require("awful")
 local wibox = require("wibox")
-local beautiful = require("beautiful")
+local build_widget = require("widgets.build_widget")
 
 local cpu_perc = wibox.widget{
   markup = "00%",
+  align  = 'center',
+  valign = 'center',
   widget = wibox.widget.textbox
 }
 
 awesome.connect_signal("evil::cpu", function(value)
-  cpu_perc.markup = string.format('%02d%%' ,value)
+  cpu_perc.markup = string.format('%02d%%', value)
 end)
 
-return cpu_perc
+cpu = build_widget(cpu_perc, '', '#1eff8e')
+
+return cpu

@@ -6,8 +6,6 @@ local vicious = require("vicious")
 
 local os = os
 
-local widgets = require("widgets")
-
 local markup = lain.util.markup
 
 local xresources = require("beautiful.xresources")
@@ -57,33 +55,6 @@ theme.maximized_hide_border = true
 theme.pw_bg = "#231929"
 
 
-function build_widget (value_widget, icon, icon_color, last)
-  local is_last = nil
-  if last then
-    is_last = wibox.widget.textbox('')
-  end
-  local pipe = is_last or wibox.widget.textbox(' <span color="grey">|</span>  ')
-
-  local widget_icon = wibox.widget{
-    markup = '<span color="' .. icon_color .. '" font="' .. theme.iconFont .. '">' .. icon .. '</span>',
-    widget = wibox.widget.textbox
-  }
-
-  local widget = wibox.widget{
-    nil,
-    {
-      widget_icon,
-      value_widget,
-      pipe,
-      spacing = dpi(2),
-      layout = wibox.layout.fixed.horizontal
-    },
-    expand = "none",
-    layout = wibox.layout.align.horizontal
-  }
-  
-  return widget
-end
 
 
 -- Separators
@@ -229,7 +200,6 @@ end
 )
 
 -- CPU
-theme.cpu = build_widget(widgets.cpu, '', '#1eff8e')
 
 -- Battery
 theme.bat = lain.widget.bat({
@@ -321,81 +291,5 @@ theme.volumewidget:buttons(awful.util.table.join(
   end)
 ))
 
-function theme.at_screen_connect(s)
-
-  -- Tags
-  --awful.tag(awful.util.tagnames, s, awful.layout.layouts[1])
-  for _, i in pairs(awful.util.tagnames[s.index]) do
-    awful.tag.add(i.name, {
-      layout = i.lay or awful.layout.layouts[1],
-      gap = i.gap or theme.useless_gap,
-      gap_single_client = true,
-      screen = s,
-      selected = i.sel or false,
-      master_width_factor = i.mw or 0.5,
-    })
-  end
-
-  -- Create a promptbox for each screen
-  -- Create an imagebox widget which will contains an icon indicating which layout we're using.
-  -- We need one layoutbox per screen.
-  s.mylayoutbox = awful.widget.layoutbox(s)
-  s.mylayoutbox:buttons(gears.table.join(
-    awful.button({}, 1, function() awful.layout.inc( 1) end),
-    awful.button({}, 2, function() awful.layout.set( awful.layout.layouts[1] ) end),
-    awful.button({}, 3, function() awful.layout.inc(-1) end),
-    awful.button({}, 4, function() awful.layout.inc( 1) end),
-    awful.button({}, 5, function() awful.layout.inc(-1) end)))
-  -- Create a taglist widget
-  s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, awful.util.taglist_buttons)
-
-  -- Create a tasklist widget
-  s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.focused)
-
-  -- Create the wibox
-  s.mywibox = awful.wibar({ position = "top", screen = s, height = 19 })
-
-  -- Add widgets to the wibox
-  s.mywibox:setup {
-    layout = wibox.layout.align.horizontal,
-    expand = 'none',
-    { -- Left widgets
-      layout = wibox.layout.fixed.horizontal,
-      s.mylayoutbox,
-      s.mytaglist,
-      s.mypromptbox,
-      seperator,
-      theme.mpd_prev,
-      theme.mpd_toggle,
-      theme.mpd_next,
-      space,
-      theme.mpdwidget,
-    },
-      wibox.container.place(mytextclock, "center"),
-    { -- Right widgets
-      layout = wibox.layout.fixed.horizontal,
-      id = "rightwidgets",
-      wibox.widget.systray(),
-      seperator,
-      key_icon,
-      theme.kblayout,
-      seperator,
-      theme.ther,
-      seperator,
-      theme.fs,
-      seperator,
-      theme.cpu,
-      theme.mem,
-      seperator,
-      theme.volumewidget,
-      theme.bat
-    },
-  }
-  if is_laptop then
-    s.mywibox:get_children_by_id("rightwidgets")[1]:insert(15, seperator)
-  else
-    s.mywibox:get_children_by_id("rightwidgets")[1]:insert(15, space)
-  end
-end
 
 return theme
