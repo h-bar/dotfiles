@@ -9,6 +9,7 @@ local lain = require("lain")
 local keys = require("keys")
 local rules = require("rules")
 local variables = require("variables")
+require("evil")
 
 beautiful.init(string.format("%s/.config/awesome/theme/theme.lua", os.getenv("HOME")))
 

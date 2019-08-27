@@ -6,7 +6,12 @@ local vicious = require("vicious")
 
 local os = os
 
+local widgets = require("widgets")
+
 local markup = lain.util.markup
+
+local xresources = require("beautiful.xresources")
+local dpi = xresources.apply_dpi
 
 local white = "#ddd"
 local gray = "#858585"
@@ -50,6 +55,36 @@ theme.layout_centerwork = theme.dir .. "/icons/centerwork.png"
 theme.useless_gap = 5
 theme.maximized_hide_border = true
 theme.pw_bg = "#231929"
+
+
+function build_widget (value_widget, icon, icon_color, last)
+  local is_last = nil
+  if last then
+    is_last = wibox.widget.textbox('')
+  end
+  local pipe = is_last or wibox.widget.textbox(' <span color="grey">|</span>  ')
+
+  local widget_icon = wibox.widget{
+    markup = '<span color="' .. icon_color .. '" font="' .. theme.iconFont .. '">' .. icon .. '</span>',
+    widget = wibox.widget.textbox
+  }
+
+  local widget = wibox.widget{
+    nil,
+    {
+      widget_icon,
+      value_widget,
+      pipe,
+      spacing = dpi(2),
+      layout = wibox.layout.fixed.horizontal
+    },
+    expand = "none",
+    layout = wibox.layout.align.horizontal
+  }
+  
+  return widget
+end
+
 
 -- Separators
 local space = wibox.widget.textbox('<span>  </span>')
@@ -194,12 +229,7 @@ end
 )
 
 -- CPU
-theme.cpu = lain.widget.cpu({
-  settings = function()
-    local cpu_icon = "<span font=\"".. theme.iconFont .."\"></span> "
-    widget:set_markup(markup.font(theme.font, markup("#1eff8e", cpu_icon) .. markup(white, string.format("%02d", cpu_now.usage) .. "% ")))
-  end
-})
+theme.cpu = build_widget(widgets.cpu, '', '#1eff8e')
 
 -- Battery
 theme.bat = lain.widget.bat({
@@ -354,8 +384,7 @@ function theme.at_screen_connect(s)
       seperator,
       theme.fs,
       seperator,
-      theme.cpu.widget,
-      seperator,
+      theme.cpu,
       theme.mem,
       seperator,
       theme.volumewidget,
