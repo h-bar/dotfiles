@@ -7,7 +7,6 @@ local hotkeys_popup = require("awful.hotkeys_popup").widget
 require("awful.hotkeys_popup.keys")
 local wibox = require("wibox")
 local lain = require("lain")
-local vicious = require("vicious")
 local variables = require("variables")
 
 
@@ -184,19 +183,16 @@ globalkeys = gears.table.join(
   awful.key({}, "XF86AudioMute",
     function()
       awful.spawn.with_shell("pulsemixer --toggle-mute")
-      vicious.force({beautiful.volumewidget})
     end,
     {description = "mute/unmute volume", group = "controls"}),
   awful.key({}, "XF86AudioLowerVolume",
     function()
       awful.spawn.with_shell("pulsemixer --change-volume -5")
-      vicious.force({beautiful.volumewidget})
     end,
     {description = "lower volume", group = "controls"}),
   awful.key({}, "XF86AudioRaiseVolume",
     function()
       awful.spawn.with_shell("pulsemixer --change-volume +5")
-      vicious.force({beautiful.volumewidget})
     end,
     {description = "raise volume", group = "controls"}),
 
@@ -204,25 +200,21 @@ globalkeys = gears.table.join(
   awful.key({}, "XF86AudioPlay",
     function()
       awful.spawn.with_shell("mpc toggle")
-      vicious.force({beautiful.mpdwidget, beautiful.mpd_prev, beautiful.mpd_toggle, beautiful.mpd_next})
     end,
     {description = "toggle play/pause", group = "controls"}),
   awful.key({}, "XF86AudioStop",
     function()
       awful.spawn.with_shell("mpc stop")
-      vicious.force({beautiful.mpdwidget, beautiful.mpd_prev, beautiful.mpd_toggle, beautiful.mpd_next})
     end,
     {description = "stops music", group = "controls"}),
   awful.key({}, "XF86AudioNext",
     function()
       awful.spawn.with_shell("mpc next")
-      vicious.force({beautiful.mpdwidget, beautiful.mpd_prev, beautiful.mpd_toggle, beautiful.mpd_next})
     end,
     {description = "next song", group = "controls"}),
   awful.key({}, "XF86AudioPrev",
     function()
       awful.spawn.with_shell("mpc prev")
-      vicious.force({beautiful.mpdwidget, beautiful.mpd_prev, beautiful.mpd_toggle, beautiful.mpd_next})
     end,
     {description = "previous song", group = "controls"}),
 

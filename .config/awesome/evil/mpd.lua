@@ -6,24 +6,30 @@
 local awful = require("awful")
 
 local function emit_info()
-    awful.spawn.easy_async({"mpc", "-f", "[[%artist%@@%title%@]]"},
-        function(stdout)
-            local artist = stdout:match('(.*)@@')
-            local title = stdout:match('@@(.*)@')
-            title = string.gsub(title, '^%s*(.-)%s*$', '%1')
-            local status = stdout:match('%[(.*)%]')
-            status = string.gsub(status, '^%s*(.-)%s*$', '%1')
+  awful.spawn.easy_async({"mpc", "-f", "[[%artist%@@%title%@]]"},
+    function(stdout)
+      local artist = stdout:match('(.*)@@')
+      local title = stdout:match('@@(.*)@')
+      title = string.gsub(title, '^%s*(.-)%s*$', '%1')
+      local status = stdout:match('%[(.*)%]')
+      status = string.gsub(status, '^%s*(.-)%s*$', '%1')
 
-            local paused
-            if status == "playing" then
-                paused = false
-            else
-                paused = true
-            end
+      local paused
+      if status == "playing" then
+          paused = false
+      else
+          paused = true
+      end
+      local stoped
+      if status == 'playing' or status == 'paused' then
+        stoped = false
+      else
+        stoped = true
+      end
 
-            awesome.emit_signal("evil::mpd", artist, title, paused)
-        end
-    )
+      awesome.emit_signal("evil::mpd", artist, title, paused, stoped)
+    end
+  )
 end
 
 -- Run once to initialize widgets
@@ -39,8 +45,8 @@ local mpd_script = [[
 awful.spawn.easy_async_with_shell("ps x | grep \"mpc idleloop player\" | grep -v grep | awk '{print $1}' | xargs kill", function ()
     -- Emit song info with each line printed
     awful.spawn.with_line_callback(mpd_script, {
-        stdout = function(line)
-            emit_info()
-        end
+      stdout = function(line)
+        emit_info()
+      end
     })
 end)

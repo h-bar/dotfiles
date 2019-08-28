@@ -11,6 +11,8 @@ widgets.temp = require('widgets.temp')
 widgets.disk = require('widgets.disk')
 widgets.vol = require('widgets.vol')
 widgets.bat = require('widgets.bat')
+widgets.mpd = require('widgets.mpd')
+widgets.kblayout = require('widgets.kblayout')
 
 -- Separators
 widgets.space = wibox.widget.textbox('<span>  </span>')
@@ -22,9 +24,5 @@ widgets.textclock = build_widget:new(textclock_text, "", "#a753fc", true).wid
 
 local month_calendar = awful.widget.calendar_popup.month()
 month_calendar:attach( widgets.textclock, "tc" )
-
--- Keyboard Layout
-local kblayout_text = awful.widget.keyboardlayout()
-widgets.kblayout = build_widget:new(kblayout_text, " ", "darksalmon").widget
 
 return widgets

@@ -1,12 +1,4 @@
-local gears = require("gears")
-local lain = require("lain")
-local awful = require("awful")
-local wibox = require("wibox")
-local vicious = require("vicious")
-
 local os = os
-
-local markup = lain.util.markup
 
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
@@ -53,81 +45,4 @@ theme.layout_centerwork = theme.dir .. "/icons/centerwork.png"
 theme.useless_gap = 5
 theme.maximized_hide_border = true
 theme.pw_bg = "#231929"
-
-
--- MPD
-theme.mpdwidget = wibox.widget.textbox()
-vicious.register(
-  theme.mpdwidget,
-  vicious.widgets.mpd,
-  function(widget, args)
-    if args["{state}"] == "Stop" then
-      return ""
-    else
-      return ('<span color="white">%s</span> - %s'):format(
-      args["{Artist}"], args["{Title}"])
-    end
-end)
-
--- MPD Toggle
-theme.mpd_toggle = wibox.widget.textbox()
-vicious.register(
-  theme.mpd_toggle,
-  vicious.widgets.mpd,
-  function(widget, args)
-    local label = {["Play"] = "", ["Pause"] = "", ["Stop"] = "" }
-    return ("<span color=\"white\" font=\"".. theme.iconFont .."\">%s</span> "):format(label[args["{state}"]])
-end)
-
-theme.mpd_toggle:buttons(awful.util.table.join(
-  awful.button({}, 1, function()
-  os.execute("mpc toggle")
-  vicious.force({theme.mpdwidget, theme.mpd_prev, theme.mpd_toggle, theme.mpd_next})
-end),
-awful.button({}, 3, function()
-  os.execute("mpc stop")
-  vicious.force({theme.mpdwidget, theme.mpd_prev, theme.mpd_toggle, theme.mpd_next})
-end)
-))
-
--- MPD Previous
-theme.mpd_prev = wibox.widget.textbox()
-vicious.register(
-  theme.mpd_prev,
-  vicious.widgets.mpd,
-  function(widget, args)
-    if args["{state}"] == "Stop" then
-      return ""
-    else
-      return ("<span color=\"white\" font=\"".. theme.iconFont .."\"></span> ")
-    end
-end)
-
-theme.mpd_prev:buttons(awful.util.table.join(
-  awful.button({}, 1, function()
-  os.execute("mpc prev")
-  vicious.force({theme.mpdwidget, theme.mpd_prev, theme.mpd_toggle, theme.mpd_next})
-end)
-))
-
--- MPD Next
-theme.mpd_next = wibox.widget.textbox()
-vicious.register(
-theme.mpd_next,
-vicious.widgets.mpd,
-function(widget, args)
-  if args["{state}"] == "Stop" then
-    return ""
-  else
-    return ("<span color=\"white\" font=\"".. theme.iconFont .."\"></span>")
-  end
-end)
-
-theme.mpd_next:buttons(awful.util.table.join(
-  awful.button({}, 1, function()
-  os.execute("mpc next")
-  vicious.force({theme.mpdwidget, theme.mpd_prev, theme.mpd_toggle, theme.mpd_next})
-end)
-))
-
 return theme
