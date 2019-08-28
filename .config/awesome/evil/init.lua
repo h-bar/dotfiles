@@ -5,9 +5,6 @@ require("evil.cpu")
 require("evil.temperature")
 require("evil.ram")
 require("evil.mpd")
-
-if is_laptop then
-  require("evil.battery")
-end
+require("evil.battery")
 
 -- return evil
