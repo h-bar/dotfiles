@@ -11,7 +11,7 @@ if is_laptop then
     widget = wibox.widget.textbox
   }
 
-  local bat_icon = ""
+  local bat_icon = ""
   local bat_icon_color = "#0883ff"
   local bat_text_color = beautiful.fg_normal
 
@@ -52,6 +52,7 @@ if is_laptop then
     end
 
     bat_value_update(value, bat_text_color)
+    bat:UpdateIcon(bat_icon, bat_icon_color)
   end)
 
   bat = build_widget:new(bat_perc, bat_icon, bat_icon_color, true)
