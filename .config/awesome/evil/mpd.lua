@@ -3,31 +3,27 @@
 --      artist (string)
 --      song (string)
 --      paused (boolean)
+--      stopped (boolean)
 local awful = require("awful")
 
+
 local function emit_info()
-  awful.spawn.easy_async({"mpc", "-f", "[[%artist%@@%title%@]]"},
-    function(stdout)
-      local artist = stdout:match('(.*)@@')
-      local title = stdout:match('@@(.*)@')
-      title = string.gsub(title, '^%s*(.-)%s*$', '%1')
-      local status = stdout:match('%[(.*)%]')
-      status = string.gsub(status, '^%s*(.-)%s*$', '%1')
-
-      local paused
-      if status == "playing" then
-          paused = false
+  awful.spawn.easy_async({"mpc", "current"},
+    function (stdout)
+      if stdout == "" then
+        awesome.emit_signal("evil::mpd", artist, title, status)
       else
-          paused = true
+      awful.spawn.easy_async({"mpc", "-f", "[[%artist%@@%title%@]]"},
+        function(stdout)
+          local artist = stdout:match('(.*)@@')
+          local title = stdout:match('@@(.*)@')
+          title = string.gsub(title, '^%s*(.-)%s*$', '%1')
+          local status = stdout:match('%[(.*)%]')
+          status = string.gsub(status, '^%s*(.-)%s*$', '%1')
+          awesome.emit_signal("evil::mpd", artist, title, status)
+        end
+      )
       end
-      local stoped
-      if status == 'playing' or status == 'paused' then
-        stoped = false
-      else
-        stoped = true
-      end
-
-      awesome.emit_signal("evil::mpd", artist, title, paused, stoped)
     end
   )
 end
@@ -47,6 +43,6 @@ awful.spawn.easy_async_with_shell("ps x | grep \"mpc idleloop player\" | grep -v
     awful.spawn.with_line_callback(mpd_script, {
       stdout = function(line)
         emit_info()
-      end
+      end,
     })
 end)

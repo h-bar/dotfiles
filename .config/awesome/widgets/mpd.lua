@@ -1,9 +1,6 @@
 local awful = require("awful")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
-local xresources = require("beautiful.xresources")
-local dpi = xresources.apply_dpi
-local build_widget = require("widgets.build_widget")
 
 local function build_icon (icon)
   return string.format('<span color="%s" font="%s">%s</span> ',
@@ -16,7 +13,7 @@ local mpd_song = wibox.widget{
 }
 
 local mpd_play = wibox.widget{
-  markup = ' ',
+  markup = build_icon(' '),
   widget = wibox.widget.textbox
 }
 
@@ -30,19 +27,22 @@ local mpd_next = wibox.widget{
   widget = wibox.widget.textbox
 }
 
-awesome.connect_signal("evil::mpd", function(artist, title, paused, stoped)
-  mpd_song.markup = string.format('<span font="%s">%s</span> - %s', beautiful.taglist_font, artist, title)
-  if stoped then
+awesome.connect_signal("evil::mpd", function(artist, title, status)
+  if status == "paused" then
+    mpd_play.markup = build_icon('')
+    mpd_prev.markup = build_icon('')
+    mpd_next.markup = build_icon('')
+    mpd_song.markup = string.format('<span font="%s">%s</span> - %s', beautiful.taglist_font, artist, title)
+  elseif status == "playing" then
+    mpd_play.markup = build_icon('')
+    mpd_prev.markup = build_icon('')
+    mpd_next.markup = build_icon('')
+    mpd_song.markup = string.format('<span font="%s">%s</span> - %s', beautiful.taglist_font, artist, title)
+  else
     mpd_prev.markup = ''
     mpd_next.markup = ''
-  else
-    mpd_prev.markup = build_icon('' .. tostring(stoped))
-    mpd_next.markup = build_icon('')
-  end
-  if not paused then
-    mpd_play.markup = ' ' .. tostring(stoped)
-  else
-    mpd_play.markup = ' ' .. tostring(stoped)
+    mpd_play.markup = build_icon(' ')
+    mpd_song.markup = ''
   end
 end)
 
