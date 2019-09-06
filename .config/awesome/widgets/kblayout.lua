@@ -18,7 +18,7 @@ local function update_layout()
   end
   local layouts = {}
   if #layouts_raw == 1 then
-      layouts[1].group_idx = 1
+    layouts[1] = layouts_raw[1].file
   end
   for _, v in ipairs(layouts_raw) do
     layouts[v.group_idx] = v.file

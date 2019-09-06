@@ -1,12 +1,9 @@
 local awful = require("awful")
 local naughty = require("naughty")
 local gears = require("gears")
-local beautiful = require("beautiful")
-local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 require("awful.hotkeys_popup.keys")
 local wibox = require("wibox")
-local lain = require("lain")
 local variables = require("variables")
 
 
@@ -14,8 +11,6 @@ modkey = "Mod4"
 altkey = "Mod1"
 ctrlkey = "Control"
 shiftkey = "Shift"
-
-beautiful.init(string.format("%s/.config/awesome/theme/theme.lua", os.getenv("HOME")))
 
 local keys = {}
 
@@ -124,18 +119,7 @@ globalkeys = gears.table.join(
   awful.key({ modkey, shiftkey }, "space", function() awful.layout.inc(-1) end,
     {description = "select previous", group = "layout"}),
 
-  awful.key({ modkey, altkey }, "l",
-    function()
-      awful.prompt.run {
-        prompt = "Run Lua code: ",
-        textbox = awful.screen.focused().mypromptbox.widget,
-        exe_callback = awful.util.eval,
-        history_path = awful.util.get_cache_dir() .. "/history_eval"
-      }
-    end,
-    {description = "lua execute prompt", group = "awesome"}),
-
-  awful.key({ ctrlkey }, "space", function () quake:toggle() end),
+  awful.key({ modkey }, "a", function () quake:toggle() end),
 
   awful.key({ modkey, "Control" }, "n",
     function ()
@@ -155,17 +139,17 @@ globalkeys = gears.table.join(
   -- Action Menus
   awful.key({ modkey }, "F3",
     function()
-      awful.spawn.with_shell(scripts .. "displayselect " .. screen1 .. " " .. screen2 .. " \"rofi -dmenu\"")
+      awful.spawn.with_shell("displayselect " .. screen1 .. " " .. screen2 .. " \"rofi -dmenu\"")
     end,
     {description = "show display selection", group = "launcher"}),
   awful.key({ modkey, shiftkey }, "x",
     function()
-      awful.spawn.with_shell(scripts .. "prompt " .. "\"Shutdown?\" " .. "\"shutdown -P 0\" " .. "\"rofi -dmenu\"")
+      awful.spawn.with_shell("prompt " .. "\"Shutdown?\" " .. "\"shutdown -P 0\" " .. "\"rofi -dmenu\"")
     end,
     {description = "show shutdown prompt", group = "launcher"}),
   awful.key({ modkey, shiftkey }, "BackSpace",
     function()
-      awful.spawn.with_shell(scripts .. "prompt " .. "\"Reboot?\" " .. "\"reboot\" " .. "\"rofi -dmenu\"")
+      awful.spawn.with_shell("prompt " .. "\"Reboot?\" " .. "\"reboot\" " .. "\"rofi -dmenu\"")
     end,
     {description = "show shutdown prompt", group = "launcher"}),
   awful.key({ modkey }, "x",

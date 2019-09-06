@@ -4,7 +4,7 @@ require("awful.autofocus")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 local naughty = require("naughty")
-local lain = require("lain")
+local utils = require("utils")
 
 local keys = require("keys")
 local rules = require("rules")
@@ -43,15 +43,7 @@ end
 -- {{{ Screen
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", function(s)
-  -- Wallpaper
-  if beautiful.wallpaper then
-    local wallpaper = beautiful.wallpaper
-    -- If wallpaper is a function, call it with the screen
-    if type(wallpaper) == "function" then
-      wallpaper = wallpaper(s)
-    end
-    gears.wallpaper.maximized(wallpaper, s, true)
-  end
+    awful.spawn.with_shell('nitrogen --restore')
 end)
 
 -- Create a wibox for each screen and add it
@@ -74,9 +66,7 @@ awful.screen.connect_for_each_screen(function(s)
   -- We need one layoutbox per screen.
   s.mylayoutbox = awful.widget.layoutbox(s)
   s.mylayoutbox:buttons(gears.table.join(
-    awful.button({}, 1, function() awful.layout.inc( 1) end),
     awful.button({}, 2, function() awful.layout.set( awful.layout.layouts[1] ) end),
-    awful.button({}, 3, function() awful.layout.inc(-1) end),
     awful.button({}, 4, function() awful.layout.inc( 1) end),
     awful.button({}, 5, function() awful.layout.inc(-1) end)))
   -- Create a taglist widget
@@ -116,11 +106,6 @@ awful.screen.connect_for_each_screen(function(s)
       widgets.bat
     },
   }
-  if is_laptop then
-    s.mywibox:get_children_by_id("rightwidgets")[1]:insert(15, seperator)
-  else
-    s.mywibox:get_children_by_id("rightwidgets")[1]:insert(15, space)
-  end
 end)
 -- }}}
 
@@ -171,7 +156,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- awful.spawn.with_shell("pulsemixer --unmute")
 
 -- Quake terminal
-quake = lain.util.quake {
+quake = utils.quake {
   app = terminal,
   horiz = "center",
   height = 0.4,

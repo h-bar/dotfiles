@@ -28,7 +28,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'mattn/emmet-vim'
 
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries', 'for': 'go' }
-Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'plasticboy/vim-markdown', { 'for': ['markdown', 'md'] }
 Plug 'dense-analysis/ale'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -73,6 +73,8 @@ let g:tagbar_foldlevel = 1
 let g:airline#extensions#tabline#enabled = 1
 
 let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_conceal = 0
+set conceallevel=0
 
 let g:goyo_width = 100
 
@@ -114,9 +116,6 @@ autocmd FileType python let b:ale_warn_about_trailing_whitespace = 0
 let g:neosnippet#scope_aliases = {}
 let g:neosnippet#scope_aliases['python'] = 'python,django'
 let g:neosnippet#scope_aliases['htmldjango'] = 'html'
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
 
 map qq :q!<Enter>
 map qw :wq<Enter>

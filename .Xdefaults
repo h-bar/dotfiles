@@ -2,8 +2,6 @@
 *.foreground:   #f1ebeb
 *.background:   #272822
 *.cursorColor:  #f1ebeb
-*fading: 0
-*fadeColor: #4C566A
 
 ! black
 *.color0:       #48483e
@@ -43,7 +41,7 @@ URxvt.colorBD:  #ECEFF4
 URxvt.colorUL: #81A1C1
 
 URxvt.intensityStyles:	true
-URxvt.background:       [88]#000000
+URxvt.background:       [95]#272822
 URxvt.multichar_encoding: utf-8
 URxvt.depth:		32
 URxvt.font:	xft:Hack Nerd Font Mono:size=10:antialiasing=true, xft:PowerlineSymbols=Regular:pixelsize=9:encoding=utf-8, xft:Noto Sans CJK JP:style=Bold
