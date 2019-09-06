@@ -1,5 +1,9 @@
 # Köfteist Köfte's dotfiles
 
+## Screenshot
+
+| ![Alt text](./screenshots/awesome1.png?raw=true "Awesome screenshot") |![Alt text](./screenshots/awesome2.png?raw=true "Awesome screenshot") |
+
 ## Personal Setup
 The setup I use in my desktop and laptop:
 * **Distrio**: [Arch Linux](https://www.archlinux.org/)
@@ -99,5 +103,3 @@ Information widget will get updated, but if you want to update icon part, you ne
 * If you find any bugs or recomandations, please feel free to contact me or open an [issue](https://gitlab.com/kofteistkofte/dotfiles/issues).
 * Special thanks to [elenapan](https://github.com/elenapan) and their awesome AwesomeWM config for Evil and a lot of ideas for making my config a lot better, [Awesome Copycats](https://github.com/lcpz/awesome-copycats) team for creating a lot of good themplates that ends up becoming a starting point for my initial config and every person who helped to create [AwesomeWM](https://awesomewm.org/) and [It's documantation](https://awesomewm.org/apidoc/).
 
-![Alt text](./screenshots/awesome1.png?raw=true "Awesome screenshot")
-![Alt text](./screenshots/awesome2.png?raw=true "Awesome screenshot")
