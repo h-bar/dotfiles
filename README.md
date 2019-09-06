@@ -1,8 +1,8 @@
 # Köfteist Köfte's dotfiles
 
 ## Screenshot
-
 | ![Alt text](./screenshots/awesome1.png?raw=true "Awesome screenshot") |![Alt text](./screenshots/awesome2.png?raw=true "Awesome screenshot") |
+| --- | --- |
 
 ## Personal Setup
 The setup I use in my desktop and laptop:
