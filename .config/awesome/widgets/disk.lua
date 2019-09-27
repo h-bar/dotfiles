@@ -2,12 +2,7 @@ local awful = require("awful")
 local wibox = require("wibox")
 local build_widget = require("widgets.build_widget")
 
-local disk_perc = wibox.widget{
-  markup = '00%',
-  align  = 'center',
-  valign = 'center',
-  widget = wibox.widget.textbox
-}
+local disk_perc = wibox.widget.textbox('00%')
 
 local disk_script = [[
   bash -c "
@@ -19,6 +14,6 @@ awful.widget.watch(disk_script, 1000, function(widget, stdout)
   disk_perc.markup = stdout
 end)
 
-disk = build_widget:new(disk_perc, '', '#b6b6b6')
+disk = build_widget:new(disk_perc, '', beautiful.xcolor7)
 
 return disk.widget

@@ -7,42 +7,25 @@ local function build_icon (icon)
     beautiful.fg_normal, beautiful.iconFont, icon)
 end
 
-local mpd_song = wibox.widget{
-  markup = '',
-  widget = wibox.widget.textbox
-}
-
-local mpd_play = wibox.widget{
-  markup = build_icon(' '),
-  widget = wibox.widget.textbox
-}
-
-local mpd_prev = wibox.widget{
-  markup = '',
-  widget = wibox.widget.textbox
-}
-
-local mpd_next = wibox.widget{
-  markup = '',
-  widget = wibox.widget.textbox
-}
+local mpd_play = wibox.widget.textbox(build_icon(' '))
+local mpd_song = wibox.widget.textbox('')
+local mpd_prev = wibox.widget.textbox('')
+local mpd_next = wibox.widget.textbox('')
 
 awesome.connect_signal("evil::mpd", function(artist, title, status)
-  if status == "paused" then
-    mpd_play.markup = build_icon('')
+  if status == "paused" or status == "playing" then
     mpd_prev.markup = build_icon('')
     mpd_next.markup = build_icon('')
-    mpd_song.markup = string.format('<span font="%s">%s</span> - <span color="%s">%s</span>', beautiful.taglist_font, artist, beautiful.xcolor10, title)
-  elseif status == "playing" then
-    mpd_play.markup = build_icon('')
-    mpd_prev.markup = build_icon('')
-    mpd_next.markup = build_icon('')
-    mpd_song.markup = string.format('<span font="%s">%s</span> - <span color="%s">%s</span>', beautiful.taglist_font, artist, beautiful.xcolor10, title)
+    mpd_song.markup = string.format('<span font="%s">%s</span> - <span color="%s">%s</span>',
+      beautiful.taglist_font, artist, beautiful.xcolor10, title)
+      if status == "playing" then
+        mpd_play.markup = build_icon('')
+      else
+        mpd_play.markup = build_icon('')
+      end
   else
-    mpd_prev.markup = ''
-    mpd_next.markup = ''
+    mpd_prev.markup, mpd_next.markup, mpd_song.markup = '', '', ''
     mpd_play.markup = build_icon(' ')
-    mpd_song.markup = ''
   end
 end)
 
@@ -68,16 +51,11 @@ mpd_next:buttons(awful.util.table.join(
 ))
 
 local mpd = wibox.widget{
-  nil,
-  {
-    mpd_prev,
-    mpd_play,
-    mpd_next,
-    mpd_song,
-    layout = wibox.layout.fixed.horizontal
-  },
-  expand = "none",
-  layout = wibox.layout.align.horizontal
+  mpd_prev,
+  mpd_play,
+  mpd_next,
+  mpd_song,
+  layout = wibox.layout.fixed.horizontal
 }
 
 return mpd

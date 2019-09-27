@@ -103,7 +103,8 @@ awful.screen.connect_for_each_screen(function(s)
       widgets.cpu,
       widgets.mem,
       widgets.vol,
-      widgets.bat
+      widgets.bat,
+      widgets.space,
     },
   }
 end)
@@ -136,16 +137,8 @@ client.connect_signal("property::minimized", function(c)
   c.minimized = false
 end)
 
--- Turn border color to back if there is only one client in the tag.
-function border_adjust(c)
-  if #awful.screen.focused().clients > 1 then
-    c.border_color = beautiful.border_focus
-  else
-    c.border_color = beautiful.border_normal
-  end
-end
 
-client.connect_signal("focus", border_adjust)
+client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
 -- Autostart

@@ -3,10 +3,7 @@ local wibox = require("wibox")
 local build_widget = require("widgets.build_widget")
 
 
-local kblayout_text = wibox.widget{
-  markup = "",
-  widget = wibox.widget.textbox,
-}
+local kblayout_text = wibox.widget.textbox('')
 
 local function update_layout()
   local layouts_raw = awful.widget.keyboardlayout.get_groups_from_group_names(
@@ -36,6 +33,6 @@ end)
 
 update_layout()
 
-keyboard = build_widget:new(kblayout_text, " ", "darksalmon")
+keyboard = build_widget:new(kblayout_text, " ", beautiful.xcolor3)
 
 return keyboard.widget

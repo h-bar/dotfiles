@@ -4,15 +4,10 @@ local beautiful = require("beautiful")
 local build_widget = require("widgets.build_widget")
 
 if is_laptop then
-  local bat_perc = wibox.widget{
-    markup = "00%",
-    align  = 'center',
-    valign = 'center',
-    widget = wibox.widget.textbox
-  }
+  local bat_perc = wibox.widget.textbox('00%')
 
   local bat_icon = ""
-  local bat_icon_color = "#0883ff"
+  local bat_icon_color = beautiful.xcolor12
   local bat_text_color = beautiful.fg_normal
 
   local bat_value_update = function (value, color)
@@ -46,16 +41,16 @@ if is_laptop then
     end
     
     if bat_warning and bat_icon_color ~= "red" then
-      bat_icon_color = "red"
+      bat_icon_color = beautiful.xcolor1
     elseif not bat_warning and bat_icon_color ~= "#0883ff" then
-      bat_icon_color = "#0883ff"
+      bat_icon_color = beautiful.xcolor12
     end
 
     bat_value_update(value, bat_text_color)
     bat:UpdateIcon(bat_icon, bat_icon_color)
   end)
 
-  bat = build_widget:new(bat_perc, bat_icon, bat_icon_color, true)
+  bat = build_widget:new(bat_perc, bat_icon, bat_icon_color)
 
   bat.widget:buttons(awful.util.table.join(
     awful.button({}, 4, function() -- scroll up
