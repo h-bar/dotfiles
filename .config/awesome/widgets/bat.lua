@@ -3,22 +3,8 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 local build_widget = require("widgets.build_widget")
 
-local battery_script = [[
-  sh -c "
-  upower -i $(upower -e | grep BAT) | grep percentage | awk '{print $2}'""
-  "]]
 
-local is_laptop = function() 
-  awful.spawn.easy_async_with_shell("upower -i $(upower -e | grep BAT) | grep present | awk '{print $2}'", function(out)
-    if out == 'yes' then
-      return true
-    else
-      return false
-    end
-  end)
-end
-
-if is_laptop then
+if os.getenv('IS_LAPTOP') then
   local bat_perc = wibox.widget.textbox('00%')
 
   local bat_icon = ""
