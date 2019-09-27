@@ -28,6 +28,10 @@ else
 	xmodmap $sysmodmap
 fi
 
+if [ -e /sys/class/power_supply/BAT? ]; then
+    export IS_LAPTOP=$true
+fi
+
 setxkbmap -layout tr,us -option grp:alt_caps_toggle &
 pulsemixer --unmute &
 urxvtd &
