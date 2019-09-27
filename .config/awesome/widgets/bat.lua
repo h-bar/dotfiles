@@ -8,13 +8,15 @@ local battery_script = [[
   upower -i $(upower -e | grep BAT) | grep percentage | awk '{print $2}'""
   "]]
 
-local is_laptop = false
-
-awful.spawn.easy_async_with_shell("upower -i $(upower -e | grep BAT) | grep percentage | awk '{print $2}'", function(out)
-  if out ~= nil then
-    is_laptop = true
-  end
-end)
+local is_laptop = function() 
+  awful.spawn.easy_async_with_shell("upower -i $(upower -e | grep BAT) | grep present | awk '{print $2}'", function(out)
+    if out == 'yes' then
+      return true
+    else
+      return false
+    end
+  end)
+end
 
 if is_laptop then
   local bat_perc = wibox.widget.textbox('00%')
