@@ -32,12 +32,12 @@ awesome.connect_signal("evil::mpd", function(artist, title, status)
     mpd_play.markup = build_icon('')
     mpd_prev.markup = build_icon('')
     mpd_next.markup = build_icon('')
-    mpd_song.markup = string.format('<span font="%s">%s</span> - %s', beautiful.taglist_font, artist, title)
+    mpd_song.markup = string.format('<span font="%s">%s</span> - <span color="%s">%s</span>', beautiful.taglist_font, artist, beautiful.xcolor10, title)
   elseif status == "playing" then
     mpd_play.markup = build_icon('')
     mpd_prev.markup = build_icon('')
     mpd_next.markup = build_icon('')
-    mpd_song.markup = string.format('<span font="%s">%s</span> - %s', beautiful.taglist_font, artist, title)
+    mpd_song.markup = string.format('<span font="%s">%s</span> - <span color="%s">%s</span>', beautiful.taglist_font, artist, beautiful.xcolor10, title)
   else
     mpd_prev.markup = ''
     mpd_next.markup = ''

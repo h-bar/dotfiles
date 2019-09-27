@@ -54,7 +54,7 @@ awful.screen.connect_for_each_screen(function(s)
     awful.tag.add(i.name, {
       layout = i.lay or awful.layout.layouts[1],
       gap = i.gap or beautiful.useless_gap,
-      gap_single_client = true,
+      gap_single_client = not i.sgap,
       screen = s,
       selected = i.sel or false,
       master_width_factor = i.mw or 0.5,
@@ -138,10 +138,10 @@ end)
 
 -- Turn border color to back if there is only one client in the tag.
 function border_adjust(c)
-  if #awful.screen.focused().clients == 1 then
-    c.border_color = beautiful.border_normal
-  else
+  if #awful.screen.focused().clients > 1 then
     c.border_color = beautiful.border_focus
+  else
+    c.border_color = beautiful.border_normal
   end
 end
 
