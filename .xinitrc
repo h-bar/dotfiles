@@ -32,7 +32,6 @@ if [ -e /sys/class/power_supply/BAT? ]; then
     export IS_LAPTOP=$true
 fi
 
-setxkbmap -layout tr,us -option grp:alt_caps_toggle &
 pulsemixer --unmute &
 urxvtd &
 compton -b &
@@ -45,9 +44,7 @@ redshift-gtk &
 nitrogen --restore &
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
-# uim-xim &
 export XMODIFIERS=@im=fcitx
 fcitx
-# uim-toolbar-gtk3-systray &
 
 exec awesome
