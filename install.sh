@@ -3,3 +3,6 @@ sudo apt install rofi fonts-roboto upower acpid pulseaudio libpulse0 pulsemixer 
 ./update.sh
 
 cp ~/.config/awesome/variables.lua.template ~/.config/awesome/variables.lua
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
