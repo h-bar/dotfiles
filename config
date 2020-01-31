@@ -1,0 +1,10 @@
+wm: herbstluft
+login manager: lightdm
+terminal: alacritty
+image viewer: feh
+file manager: ranger
+broswer: chrome
+launcher: rofi
+shell: zsh
+input method: fcitx fcitx-googlepinyin
+sudo apt install rofi fonts-roboto upower acpid pulseaudio libpulse0 pulsemixer mpd mopidy mpc nitrogen i3lock fonts-noto-cjk fonts-noto-cjk-extra fonts-noto-color-emoji fonts-powerline fonts-font-awesome feh rxvt-unicode-256color zsh neovim ncmpcpp ranger pcmanfm fcitx fcitx-googlepinyin --no-install-recommends

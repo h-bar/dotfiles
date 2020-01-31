@@ -1,7 +1,6 @@
-cp -ir  .config     ~
-cp -ir  .scripts    ~
-cp -ir  .fonts      ~
-cp -i   .Xdefaults  ~
-cp -i   .xinitrc    ~
-cp -i   .zshrc      ~
-cp -i   .gtkrc-2.0  ~
+
+sudo cp  -i .config/herbstluftwm/herbstluftwm.desktop /usr/share/xsessions/
+yes | cp -i -r  .config     ~
+yes | cp -i -r  .scripts    ~
+yes | cp -i -r  .fonts      ~
+yes | cp -i .zshrc ~
