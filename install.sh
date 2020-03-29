@@ -11,7 +11,7 @@ sudo apt install -y --no-install-recommends pkg-config libx11-dev libglib2.0-dev
 sudo add-apt-repository ppa:mmstick76/alacritty
 sudo apt install -y --no-install-recommends alacritty xclip
 
-sudo apt install  -y --no-install-recommends compton feh mpd mpc mopidy rofi upower acpid pulseaudio libpulse0 pulsemixer nitrogen ncmpcpp pcmanfm
+sudo apt install  -y --no-install-recommends compton feh mpd mpc mopidy rofi upower acpid pulseaudio pulseaudio-module-bluetooth libpulse0 pulsemixer nitrogen ncmpcpp pcmanfm
 
 sudo apt install -y --no-install-recommends fcitx fcitx-googlepinyin
 
