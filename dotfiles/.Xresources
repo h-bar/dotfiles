@@ -2,7 +2,7 @@
 
 xterm*faceName: Input
 xterm*faceSize: 10
-xterm*faceNameDoublesize: Input
+xterm*selectToClipboard: true
 
 !-- Xft settings -- !
 Xft.antialias:  true
