@@ -6,13 +6,10 @@ call plug#begin()
 Plug 'kyoz/purify', { 'rtp': 'vim' }
 Plug 'vim-airline/vim-airline'
 Plug 'myusuf3/numbers.vim'
+Plug 'preservim/nerdtree'
 call plug#end()
 
 syntax on
-colorscheme purify
-let g:airline_theme='purify'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
 
 " Enable mouse support for cursor and selection
 set mouse=a
