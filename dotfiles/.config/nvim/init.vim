@@ -5,6 +5,7 @@ exec 'source ' . InitDir . '/plug.vim'
 call plug#begin()
 Plug 'kyoz/purify', { 'rtp': 'vim' }
 Plug 'vim-airline/vim-airline'
+Plug 'myusuf3/numbers.vim'
 call plug#end()
 
 syntax on
@@ -15,7 +16,7 @@ let g:airline_theme='purify'
 set mouse=a
 set virtualedit=onemore
 set whichwrap=b,h,l,<,>,[,]
-
+set number
 set tabstop=4
 set shiftwidth=4
 set expandtab
