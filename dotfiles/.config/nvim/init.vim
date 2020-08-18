@@ -11,6 +11,8 @@ call plug#end()
 syntax on
 colorscheme purify
 let g:airline_theme='purify'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
 
 " Enable mouse support for cursor and selection
 set mouse=a
