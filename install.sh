@@ -1,3 +1,3 @@
 cp -a ./dotfiles/. ~/
 
-xrdb -cpp ./bin/gpp -m ~/.Xresources
+xrdb -cpp cpp -m ~/.Xresources
