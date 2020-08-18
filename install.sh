@@ -1,1 +1,1 @@
-cp -r ./dotfiles/* ~/
+cp -a ./dotfiles/. ~/

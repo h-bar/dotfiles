@@ -1,6 +1,6 @@
-cp -r ~/.config/nvim ./dotfiles/.config/nvim
-cp -r ~/.config/xresources ./dotfiles/.config/xresources
+cp -a ~/.config/nvim ./dotfiles/.config/nvim
+cp -a ~/.config/xresources ./dotfiles/.config/xresources
 
 
-cp -r ~/.fonts ./dotfiles/
-cp -r ~/.Xresources ./dotfiles/
+cp -a ~/.fonts ./dotfiles/
+cp -a ~/.Xresources ./dotfiles/
