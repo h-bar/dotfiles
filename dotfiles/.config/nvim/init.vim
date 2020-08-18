@@ -25,4 +25,5 @@ set autoindent
 
 set wildmode=longest:full
 
+exec 'source ' . InitDir . '/pluginConfig.vim'
 exec 'source ' . InitDir . '/keymap.vim'
