@@ -3,10 +3,11 @@ let InitDir = fnamemodify($MYVIMRC, ':p:h')
 exec 'source ' . InitDir . '/plug.vim'
 
 call plug#begin()
-Plug 'kyoz/purify', { 'rtp': 'vim' }
 Plug 'vim-airline/vim-airline'
 Plug 'myusuf3/numbers.vim'
 Plug 'preservim/nerdtree'
+Plug 'sainnhe/sonokai'
+Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 syntax on
