@@ -6,11 +6,16 @@ call plug#begin()
 Plug 'vim-airline/vim-airline'
 Plug 'myusuf3/numbers.vim'
 Plug 'preservim/nerdtree'
-Plug 'sainnhe/sonokai'
+Plug 'h-bar/sonokai'
 Plug 'sheerun/vim-polyglot'
+Plug 'raimondi/delimitmate'
+Plug 'preservim/nerdcommenter'
+Plug 'godlygeek/tabular'
 call plug#end()
 
 syntax on
+set termguicolors
+filetype plugin on
 
 " Enable mouse support for cursor and selection
 set mouse=a
