@@ -10,15 +10,15 @@ let mapleader=";"
 command! ConfigEdit 	:edit $MYVIMRC
 command! ConfigReload	:source $MYVIMRC | echo $MYVIMRC "reloaded"
 
-inoremap <leader><leader> <Esc><Right>
-vnoremap <leader><leader> <Esc>
-nnoremap <leader><leader> <Insert>
+inoremap    <leader><leader> <Esc><Right>
+vnoremap    <leader><leader> <Esc>
+nnoremap    <leader><leader> <Insert>
 
-noremap <C-Space> :
-inoremap <C-Space> <C-O>:
-cnoremap <C-space> <Esc>
+noremap     <C-Space> :
+inoremap    <C-Space> <C-O>:
+cnoremap    <C-space> <C-C>
 
-noremap <BS> <Left>x
+noremap     <BS> <Left>x
 
 noremap     <C-S>   :w<CR>
 inoremap    <C-S>   <C-O>:w<CR>
@@ -38,7 +38,7 @@ noremap     <C-Q>   :q<CR>
 inoremap    <C-Q>   <C-O>:q<CR>
 
 noremap     <C-K>   :bdelete<CR>
-inoremap     <C-K>   <C-O>:bdelete<CR>
+inoremap    <C-K>   <C-O>:bdelete<CR>
 
 noremap     <C-N>   :bnext<CR>
 inoremap    <C-N>   <C-O>:bnext<CR>
@@ -84,20 +84,7 @@ vnoremap    <S-Up>      <Up>
 inoremap    <S-Up>      <Left><C-O>v<Up>
 vnoremap    <Up>        <Esc><Up><Right>
 
-
-" go to next buffer
-"nnoremap <silent> <leader>bn :bn<CR>
-"nnoremap <C-l> :bn<CR>
-
-
-" horizontal split with new buffer
-"nnoremap <silent> <leader>bh :new<CR>
-
-" vertical split with new buffer
-"nnoremap <silent> <leader>bv :vnew<CR>
-
-" redraw screan and clear search highlighted items
-"http://stackoverflow.com/questions/657447/vim-clear-last-search-highlighting#answer-25569434
-"nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
-
+nmap <C-_> <plug>NERDCommenterToggle
+vmap <C-_> <plug>NERDCommenterToggle
+imap <C-_> <C-O><plug>NERDCommenterToggle
 
