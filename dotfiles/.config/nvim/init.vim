@@ -33,3 +33,8 @@ set wildmode=longest:full
 
 exec 'source ' . InitDir . '/pluginConfig.vim'
 exec 'source ' . InitDir . '/keymap.vim'
+
+
+command! ConfigEdit 	:edit $MYVIMRC
+command! ConfigReload	:source $MYVIMRC | echo $MYVIMRC "reloaded"
+command! -nargs=1 Grep  :grep <args> | cwindow

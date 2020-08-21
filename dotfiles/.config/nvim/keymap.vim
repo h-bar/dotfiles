@@ -7,15 +7,12 @@
 
 let mapleader=";"
 
-command! ConfigEdit 	:edit $MYVIMRC
-command! ConfigReload	:source $MYVIMRC | echo $MYVIMRC "reloaded"
-
 inoremap    <leader><leader> <Esc><Right>
 vnoremap    <leader><leader> <Esc>
 nnoremap    <leader><leader> <Insert>
 
 noremap     <C-Space> :
-inoremap    <C-Space> <C-O>:
+inoremap    <C-Space> <C-C>:
 cnoremap    <C-space> <C-C>
 
 noremap     <BS> <Left>x
