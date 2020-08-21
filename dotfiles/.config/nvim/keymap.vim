@@ -48,6 +48,9 @@ inoremap    <C-Z>   <C-O>u
 noremap     <C-Y>   <C-R>
 inoremap    <C-Y>   <C-O><C-R>
 
+noremap     <C-F>   :FindInFile<CR>
+inoremap    <C-F>   <C-O>:FindInFile<CR>
+
 " Keybindings for selections using SHIFTS
 noremap     <S-l>       v<Right>
 vnoremap    <S-l>       <Right>
