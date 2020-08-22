@@ -33,6 +33,7 @@ let g:NERDCreateDefaultMappings = 0
 """""""""""""""""""""""""""""
 "" FZF and Ripgrep
 """""""""""""""""""""""""""""
+let $FZF_DEFAULT_COMMAND='rg --follow --hidden --column --line-number --no-heading --smart-case -l ""'
 let g:fzf_buffers_jump = 1
 
 function! RipgrepFzf(query, fullscreen)
@@ -43,4 +44,5 @@ function! RipgrepFzf(query, fullscreen)
   call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
 endfunction
 
-command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
+

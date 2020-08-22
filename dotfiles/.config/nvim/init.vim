@@ -14,6 +14,7 @@ Plug 'godlygeek/tabular'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install()}}
 Plug 'junegunn/fzf.vim'
 Plug 'MattesGroeger/vim-bookmarks'
+Plug 'mhinz/vim-startify'
 call plug#end()
 
 syntax on
