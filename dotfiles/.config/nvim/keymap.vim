@@ -51,6 +51,8 @@ inoremap    <C-Y>   <C-O><C-R>
 noremap     <C-F>   :FindInFile<CR>
 inoremap    <C-F>   <C-O>:FindInFile<CR>
 
+map         <C-_>   <plug>NERDCommenterToggle
+
 noremap     <C-O>   :OpenFile<CR>
 inoremap    <C-O>   <C-O>:OpenFile<CR>
 
@@ -59,7 +61,6 @@ nnoremap    <S-Tab> <<_
 inoremap    <S-Tab> <C-D>
 vnoremap    <Tab>   >gv
 vnoremap    <S-Tab> <gv
-
 
 " Keybindings for selections using SHIFTS
 noremap     <S-l>       v<Right>
