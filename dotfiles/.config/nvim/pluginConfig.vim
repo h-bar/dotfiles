@@ -40,13 +40,14 @@ let g:rg_command = 'rg' . rg_options
 let $FZF_DEFAULT_COMMAND = rg_command . ' --files-with-matches ""'
 let g:fzf_buffers_jump = 1
 
-function! RipgrepFzf(query, fullscreen)
-  let command_fmt = g:rg_command . ' -- %s || true'
+function! RipgrepFzf(query, fullscreen, options)
+  let command_fmt = g:rg_command . a:options . ' -- %s || true'
   let initial_command = printf(command_fmt, shellescape(a:query))
   let reload_command = printf(command_fmt, '{q}')
   let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
   call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
 endfunction
 
-command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
+command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0, "")
+command! -nargs=* -bang Rgc call RipgrepFzf(<q-args>, <bang>0, " --type c")
 
