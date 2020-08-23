@@ -43,4 +43,5 @@ command! ConfigEdit 	:edit $MYVIMRC
 command! ConfigReload	:source $MYVIMRC | echo $MYVIMRC "reloaded"
 
 command! FindInFile     :BLines
-
+command! OpenFile       :Files
+command! FindInProject  :Rg

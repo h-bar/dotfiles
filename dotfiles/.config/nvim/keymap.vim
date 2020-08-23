@@ -51,6 +51,9 @@ inoremap    <C-Y>   <C-O><C-R>
 noremap     <C-F>   :FindInFile<CR>
 inoremap    <C-F>   <C-O>:FindInFile<CR>
 
+noremap     <C-O>   :OpenFile<CR>
+inoremap    <C-O>   <C-O>:OpenFile<CR>
+
 nnoremap <Tab> >>_
 nnoremap <S-Tab> <<_
 inoremap <S-Tab> <C-D>
@@ -89,8 +92,4 @@ noremap     <S-Up>      v<Up>
 vnoremap    <S-Up>      <Up>
 inoremap    <S-Up>      <Left><C-O>v<Up>
 vnoremap    <Up>        <Esc><Up><Right>
-
-nmap <C-_> <plug>NERDCommenterToggle
-vmap <C-_> <plug>NERDCommenterToggle
-imap <C-_> <C-O><plug>NERDCommenterToggle
 
