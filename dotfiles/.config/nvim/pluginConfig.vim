@@ -34,8 +34,6 @@ let g:NERDCreateDefaultMappings = 0
 "" FZF and Ripgrep
 """""""""""""""""""""""""""""
 let rg_options = ' --follow --hidden --column --line-number --no-heading --smart-case --ignore'
-let rg_options = rg_options . ' --glob "!.git/*"'
-let rg_options = rg_options . ' --glob "!node_modules/*"'
 
 let g:rg_command = 'rg' . rg_options
 
