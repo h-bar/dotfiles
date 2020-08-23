@@ -54,11 +54,12 @@ inoremap    <C-F>   <C-O>:FindInFile<CR>
 noremap     <C-O>   :OpenFile<CR>
 inoremap    <C-O>   <C-O>:OpenFile<CR>
 
-nnoremap <Tab> >>_
-nnoremap <S-Tab> <<_
-inoremap <S-Tab> <C-D>
-vnoremap <Tab> >gv
-vnoremap <S-Tab> <gv
+nnoremap    <Tab>   >>_
+nnoremap    <S-Tab> <<_
+inoremap    <S-Tab> <C-D>
+vnoremap    <Tab>   >gv
+vnoremap    <S-Tab> <gv
+
 
 " Keybindings for selections using SHIFTS
 noremap     <S-l>       v<Right>

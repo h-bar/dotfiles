@@ -36,8 +36,6 @@ set autoindent
 set wildmode=longest:full
 
 exec 'source ' . InitDir . '/pluginConfig.vim'
-exec 'source ' . InitDir . '/keymap.vim'
-
 
 command! ConfigEdit 	:edit $MYVIMRC
 command! ConfigReload	:source $MYVIMRC | echo $MYVIMRC "reloaded"
@@ -45,3 +43,8 @@ command! ConfigReload	:source $MYVIMRC | echo $MYVIMRC "reloaded"
 command! FindInFile     :BLines
 command! OpenFile       :Files
 command! FindInProject  :Rg
+command! FindInC        :Rg --glob "*.c" --glob "*.h"
+
+
+exec 'source ' . InitDir . '/keymap.vim'
+
