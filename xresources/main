@@ -1,10 +1,11 @@
-#include ".config/xresources/purify"
+#include "./purify"
 
 xterm*faceName: Input
 xterm*faceSize: 10
 xterm*VT100.Translations: #override Ctrl Shift <Key>V:    insert-selection(CLIPBOARD) \n\
                                     Ctrl Shift <Key>C:    copy-selection(CLIPBOARD)
 !-- Xft settings -- !
+Xft.dpi:        192
 Xft.antialias:  true
 Xft.rgba:       rgb
 Xft.hinting:    true

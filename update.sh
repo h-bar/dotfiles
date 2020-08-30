@@ -1,6 +1,7 @@
-cp -a ~/.config/nvim ./dotfiles/.config/
-cp -a ~/.config/xresources ./dotfiles/.config/
+mkdir -p $HOME/.fonts
+cp -r ./fonts/* $HOME/.fonts
+fc-cache -rvf $HOME/.fonts
 
-
-cp -a ~/.fonts ./dotfiles/
-cp -a ~/.Xresources ./dotfiles/
+cpp ./xresources.d/main -o $HOME/.Xdefaults
+cpp ./xresources.d/main -o $HOME/.Xresources
+xrdb $HOME/.Xresources
