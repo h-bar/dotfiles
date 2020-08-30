@@ -5,6 +5,8 @@ xterm*faceSize: 10
 xterm*VT100.Translations: #override Ctrl Shift <Key>V:    insert-selection(CLIPBOARD) \n\\
                                     Ctrl Shift <Key>C:    copy-selection(CLIPBOARD)
 
+xterm*VT100.scrollBar: false
+
 !-- Xft settings -- !
 Xft.dpi:        96
 Xft.antialias:  true
