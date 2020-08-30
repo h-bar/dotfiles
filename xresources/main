@@ -1,11 +1,11 @@
 #include "./purify"
 
 xterm*faceName: Input Hack
-xterm*faceSize: 6
+xterm*faceSize: 10
 xterm*VT100.Translations: #override Ctrl Shift <Key>V:    insert-selection(CLIPBOARD) \n\
                                     Ctrl Shift <Key>C:    copy-selection(CLIPBOARD)
 !-- Xft settings -- !
-Xft.dpi:        192
+Xft.dpi:        96
 Xft.antialias:  true
 Xft.rgba:       rgb
 Xft.hinting:    true
