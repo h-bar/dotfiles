@@ -2,6 +2,9 @@ mkdir -p $HOME/.fonts
 cp -r ./fonts/* $HOME/.fonts
 fc-cache -rvf $HOME/.fonts
 
-cpp ./xresources.d/main -o $HOME/.Xdefaults
-cpp ./xresources.d/main -o $HOME/.Xresources
+cpp ./xresources/main -o $HOME/.Xdefaults
+cpp ./xresources/main -o $HOME/.Xresources
 xrdb $HOME/.Xresources
+
+mkdir -p $HOME/.config
+cp -r ./config/* $HOME/.config

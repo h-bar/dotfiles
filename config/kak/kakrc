@@ -1,0 +1,42 @@
+# relative line numbers
+add-highlighter global/ number-lines -relative -hlcursor
+add-highlighter global/ wrap
+
+add-highlighter global/ show-matching
+
+# Disable clippy
+set-option global ui_options ncurses_assistant=off
+
+# Set jumpclient
+set-option global jumpclient jump
+# Set toolsclient
+set-option global toolsclient tools
+# Set docsclient
+set-option global docsclient docs
+# Create client with name
+define-command -docstring "Open a new client with the given name" \
+new-client -params 1 %{
+    new rename-client %arg{1}
+}
+
+
+# indentation
+set-option global tabstop     4
+set-option global indentwidth 4
+
+# # tabs to spaces
+hook global InsertChar \t %{
+    exec -draft h@
+}
+
+# keep space around cursor
+# set-option global scrolloff 10,10
+
+# save on pressing enter
+hook global NormalKey <ret> w
+
+# remap grep-jump
+map global goto <ret> "<esc><ret>"
+
+# case insensitive search
+map global prompt <a-i> "<home>(?i)<end>"
