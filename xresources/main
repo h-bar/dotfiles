@@ -1,6 +1,6 @@
 #include "./purify"
 
-xterm*faceName: Input Hack
+xterm*faceName: Input
 xterm*faceSize: 10
 xterm*VT100.Translations: #override Ctrl Shift <Key>V:    insert-selection(CLIPBOARD) \n\
                                     Ctrl Shift <Key>C:    copy-selection(CLIPBOARD)
