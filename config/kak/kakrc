@@ -31,6 +31,7 @@ plug "andreyorst/fzf.kak" defer fzf %{
     set-option global fzf_file_command 'fd'
     set-option global fzf_highlight_command 'bat'
 }
+map global normal <c-r> ': fzf-mode<ret>'
 
 add-highlighter global/ number-lines -relative
 add-highlighter global/ wrap
